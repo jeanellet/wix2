@@ -11,3 +11,68 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.task_style{
+  display:inline-flex;
+}
+
+.image_style{
+  width:50%;
+  margin:50px;
+}
+.image_style img{
+  width:70%;
+  text-align: center;
+  margin: 50px;
+}
+
+.timer{
+  text-align: center;
+}
+
+.monitoring_style{
+  width:25%;
+  margin:50px;
+}
+
+.monitoring_style button{
+  width:150px;
+  height:50px;
+  margin:10px;
+}
+
+.clickedBtn{
+  background-color: gray;
+}
+
+.unclickedBtn{
+  background-color: white;
+}
+
+.counting_style{
+  width:25%;
+  margin:50px;
+}
+
+.counting_style h1{
+  text-align: center;
+  margin:auto;
+}
+
+.count_btns{
+  align-items: center;
+  margin:auto;
+}
+
+.counting_style button{
+  display:inline-flex;
+  align-content: center;
+  width:100px;
+  height:50px;
+  margin:10px;
+}
+
+.counting_style button p{  
+  align-self: center;
+  margin: auto;
+}
