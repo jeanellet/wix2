@@ -29,7 +29,7 @@ const Timer = () => {
   return (
     <div className="app">
       <div className="timer">
-        <h3>{seconds}</h3>
+        <h1>{seconds}</h1>
       </div>
     </div>
   );

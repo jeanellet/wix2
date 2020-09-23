@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-function Counting(){
+function Counting(props){
 
     const [fragile_count, setFragile] = useState(0);
     const [normal_count, setNormal] = useState(0);
@@ -8,6 +8,7 @@ function Counting(){
 
     function addFragile() {
         setFragile(fragile_count+1);
+        props.completed(true);
     }
 
     function emptyFragile(){
@@ -16,6 +17,7 @@ function Counting(){
 
     function addNormal() {
         setNormal(normal_count+1);
+        props.completed(true);
     }
 
     function emptyNormal() {
@@ -24,6 +26,7 @@ function Counting(){
 
     function addOversize() {
         setOversize(oversize_count+1);
+        props.completed(true);
     }
 
     function emptyOversize() {
