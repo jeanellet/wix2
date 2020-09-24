@@ -11,9 +11,9 @@ class ShowImage extends React.Component {
   }
 
   switchImage() {
-    if (this.state.currentImage < this.props.images.length - 1) {
+    if (this.state.currentImage == 0) {
       this.setState({
-        currentImage: this.state.currentImage + 1
+        currentImage: 1
       });
     } else {
       this.setState({
@@ -31,12 +31,16 @@ class ShowImage extends React.Component {
         this.timer = setInterval(this.switchImage, 2000);     
   }
 
+  componentWillUnmount(){
+    clearInterval(this.timer);
+  }
+
   render() {
     return (
       <div className="image_style">
         <img className="image_style"
           src={this.props.images[this.state.currentImage]}
-          alt="cleaning images"
+          alt="baggage images"
         />
       </div>
     );

@@ -51,6 +51,8 @@ class Monitoring extends React.Component{
                 this.setState({button3:false});
                 this.setState({button4:true});
                 break;
+            default:
+                break;
         }
         console.log("clicked " + number);
         this.props.completed(true);

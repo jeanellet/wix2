@@ -1,71 +1,77 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import ShowImage from './ShowImage';
-import Counting from './Counting';
-import Monitoring from './Monitoring';
-import Timer from './Timer';
-
-import task_img1 from './LOA_1/B1_3_1.png';
-import task_img2 from './LOA_1/B3_1_1.png';
-import task_img3 from './LOA_1/B4_1_3.png';
-import obj_img from './Objects.png';
+import Level from './Level';
 
 function App() {
-  const types = ["Fragile", "Normal", "Oversize"];
-  const rand = Math.round(Math.random() * 2);
 
   const LOA1Imgs = require.context('./LOA_1/', true, /\.png$/);
   const LOA1 = LOA1Imgs.keys().map(path=>({path, file: LOA1Imgs(path)}));
-  console.log(LOA1);
 
-  const [monitoringDone, setMonitoring] = useState(false);
-  const [countingDone, setCounting] = useState(false);
-  const [imageIndex, setImgIndex] = useState(2);
-  const [imgs, setImgs] = useState([LOA1[0].file, LOA1[1].file]);
-  const [seconds, setSeconds] = useState(0);
-  const [key,setKey] = useState(0);
-  const [toggleOk, setToggle] = useState(1);
-  const [rand_bag, setBag] = useState(types[rand]);
+  const LOA3Imgs = require.context('./LOA_3/', true, /\.png$/);
+  const LOA3 = LOA3Imgs.keys().map(path=>({path, file: LOA3Imgs(path)}));
+
+  const LOA91Imgs = require.context('./LOA_9/LOA_9_1/', true, /\.png$/);
+  const LOA91 = LOA91Imgs.keys().map(path=>({path, file: LOA91Imgs(path)}));
+
+  const LOA92Imgs = require.context('./LOA_9/LOA_9_2/', true, /\.png$/);
+  const LOA92 = LOA92Imgs.keys().map(path=>({path, file: LOA92Imgs(path)}));
+
+  const [nextLevel, setNext] = useState(false);
+  const [levelIndex, setLevel] = useState(0);
   const [trials, setTrials] = useState(0);
+  const [blinkImage, setBlink] = useState(false);
+  const [highlightBtn, setHighlight] = useState(false);
+  const order = [1, 3, 91, 92];
+  const images = [LOA1, LOA3, LOA91, LOA92];
+  const blinks = [false, true, false, true];
+  const highlights = [false, false, true, true];
 
-
-  function getRandomBag(){
-    const types = ["Fragile", "Normal", "Oversize"];
-    const rand = Math.round(Math.random() * 2);
-    setBag(types[rand]);
+  function getLevelSettings() {
+    console.log("getting settings for "+order[levelIndex]);
+    switch(order[levelIndex]){
+      case 1:
+        setBlink(false);
+        setHighlight(false);
+        break;
+      case 3:
+        setBlink(true);
+        setHighlight(false);
+        break;
+      case 91:
+        setBlink(false);
+        setHighlight(true);
+        break;
+      case 92:
+        setBlink(true);
+        setHighlight(true);
+        break;
+      default:
+        break;
+    }
+    return;
   }
+ 
+  useEffect(()=>{
+    if(nextLevel === true){
+      if(levelIndex == 3){
+        console.log("done with everything");
+      }
+      else{
+        setLevel(levelIndex + 1);
+        setTrials(0);
+        setNext(false);
+      }
+    }
+  }, [nextLevel]);
 
   useEffect(()=>{
-    if(monitoringDone && countingDone){
-      console.log("next task");
-      React.cloneElement(Monitoring, )
-      setMonitoring(false);
-      setCounting(false);
-      setImgs([LOA1[imageIndex].file, LOA1[imageIndex+1].file]);
-      setImgIndex(imageIndex+2);
-      setKey(key+2);
-      setTrials(trials+1);
-      getRandomBag();
-    }
-  }, [monitoringDone, countingDone]);
-
-  useEffect(()=>{
-    if(trials == 3){
-      console.log("done with task");
-    }
-  }, [trials]);
-
+    getLevelSettings();
+    console.log(blinkImage, highlightBtn);
+  }, [levelIndex]);
 
   return (
-    <div className="task_style">
-      <div className="img_side">
-      <Timer key={key}></Timer>
-    <ShowImage key={key+1} images={imgs} toggleOk={monitoringDone}></ShowImage>
-    <h2 className="bag_style">{rand_bag}</h2>
-  
-    </div>
-    <Monitoring key={key} completed={setMonitoring}></Monitoring>
-    <Counting completed={setCounting}></Counting>
+    <div>
+      <Level highlightBtn={highlightBtn} blinkImage={blinkImage} images={images[levelIndex]} trials={trials} setTrials={setTrials} nextLevel={setNext} levelType={order[levelIndex]}></Level>
     </div>
   );
 }

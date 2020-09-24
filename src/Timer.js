@@ -4,15 +4,6 @@ const Timer = () => {
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(true);
 
-  function toggle() {
-    setIsActive(!isActive);
-  }
-
-  function reset() {
-    setSeconds(0);
-    setIsActive(false);
-  }
-
   useEffect(() => {
     let interval = null;
     if (isActive) {
