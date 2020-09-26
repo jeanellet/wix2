@@ -56,6 +56,10 @@ code {
   background-color: white;
 }
 
+.highlightRed{
+  background-color:red;
+}
+
 .counting_style{
   width:25%;
   margin:50px;

@@ -4,6 +4,7 @@ import ShowImage from './ShowImage';
 import Counting from './Counting';
 import Monitoring from './Monitoring';
 import Timer from './Timer';
+import { writeM } from './LogData';
 
 
 function Level(props) {
@@ -14,10 +15,11 @@ function Level(props) {
   const [countingDone, setCounting] = useState(false);
   const [imgs, setImgs] = useState([props.images[0].file, props.images[1].file]);
   
-  const [seconds, setSeconds] = useState(0);
   const [key,setKey] = useState(0);
-  const [toggleOk, setToggle] = useState(1);
   const [rand_bag, setBag] = useState(types[rand]);
+
+  const [mResult, setMResult] = useState({});
+  const [cResult, setCResult] = useState({});
 
 
   function getRandomBag(){
@@ -47,6 +49,20 @@ function Level(props) {
     }
   }, [props.trials]);
 
+  useEffect(()=>{
+    console.log("got mresults back", mResult);
+    writeM(props.levelType, props.trials, 0, false, props.images[props.trials].file, mResult.count, false, 0);
+  },[mResult]);
+
+  useEffect(()=>{
+    console.log("got cresults back", cResult);
+    //writeC(level, trial, duration, image, choice, correct, currentCount, capacity);
+  },[cResult]);
+
+  useEffect(()=>{
+    console.log("starting new level cue transitions");
+  },[props.levelType]);
+
   function blinkingImage(){
     if (props.levelType == 1 || props.levelType == 91){
         return (<img className="image_style"
@@ -56,21 +72,32 @@ function Level(props) {
     }
     else{
         console.log("sending these",imgs);
-        return(<ShowImage key={key+1} images={imgs} toggleOk={monitoringDone}></ShowImage>)
+        return(<ShowImage key={key+1} images={imgs}></ShowImage>)
     }
+  }
+
+  function getWeaponCount(){
+    return props.images[props.trials].weapons;
+  }
+
+  function isHighlight(){
+    if (props.levelType == 91 || props.levelType == 92){
+      return true;
+    }
+    return false;
   }
 
   return (
     <div className="task_style">
       <div className="img_side">
-      <Timer key={key}></Timer>
+      <Timer key={props.trials}></Timer>
       {blinkingImage()}
     
     <h2 className="bag_style">{rand_bag}</h2>
   
     </div>
-    <Monitoring key={key} completed={setMonitoring}></Monitoring>
-    <Counting completed={setCounting}></Counting>
+    <Monitoring key={props.trials} weaponCount = {getWeaponCount()} highlightOk={isHighlight()} completed={setMonitoring} result={setMResult}></Monitoring>
+    <Counting key={"L"+props.levelType} completed={setCounting} result={setCResult}></Counting>
     </div>
   );
 }
