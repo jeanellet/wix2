@@ -51,9 +51,26 @@ function App() {
     }
   }, [nextLevel]);
 
+  function getOrder(){
+    let array = [];
+
+    for(var i=0;i<images[levelIndex].length/2;i++){
+      array.push(i);
+    }
+    var tmp, current, top = array.length;
+    if(top) while(--top) {
+      current = Math.floor(Math.random() * (top + 1));
+      tmp = array[current];
+      array[current] = array[top];
+      array[top] = tmp;
+    }
+    console.log(images[levelIndex],array);
+    return array;
+  }
+
   return (
     <div>
-      <Level images={images[levelIndex]} trials={trials} setTrials={setTrials} nextLevel={setNext} levelType={order[levelIndex]}></Level>
+      <Level order={getOrder()} images={images[levelIndex]} trials={trials} setTrials={setTrials} nextLevel={setNext} levelType={order[levelIndex]}></Level>
     </div>
   );
 }

@@ -5,9 +5,10 @@ import Counting from './Counting';
 import Monitoring from './Monitoring';
 import Timer from './Timer';
 import { writeM } from './LogData';
-
+import Workbook from 'react-excel-workbook';
 
 function Level(props) {
+  const data = []
   const types = ["Fragile", "Normal", "Oversize"];
   const rand = Math.round(Math.random() * 2);
 
@@ -30,11 +31,9 @@ function Level(props) {
 
   useEffect(()=>{
     if(monitoringDone && countingDone){
-      //React.cloneElement(Monitoring, )
       setMonitoring(false);
       setCounting(false);
-      setImgs([props.images[2*props.trials].file, props.images[2*props.trials+1].file]);
-     
+      
       setKey(key+2);
       props.setTrials(props.trials+1);
       getRandomBag();
@@ -43,10 +42,21 @@ function Level(props) {
 
   useEffect(()=>{
     if(props.trials == 3){
-        props.nextLevel(true);
+      props.nextLevel(true);
       console.log("done with task", props.levelType, props.images);
 
     }
+    if(props.levelType == 3 || props.levelType == 92){
+      const path1 = props.images[2*props.order[props.trials]].path;
+      const path2 = props.images[2*props.order[props.trials]+1].path;
+      setImgs([props.images[2*props.order[props.trials]].file, props.images[2*props.order[props.trials]+1].file]);
+      console.log(path1.substring(3,path1.indexOf("_")),path2.substring(3,path2.indexOf("_")));
+      if(path1.substring(3,path1.indexOf("_")) != path2.substring(3,path2.indexOf("_"))){
+        console.log("mismatched")
+        setImgs([props.images[2*props.order[props.trials]].file, props.images[2*props.order[props.trials]+1].file]);
+      }
+    }
+
   }, [props.trials]);
 
   useEffect(()=>{
@@ -61,6 +71,7 @@ function Level(props) {
 
   useEffect(()=>{
     console.log("starting new level cue transitions");
+    
   },[props.levelType]);
 
   function blinkingImage(){
@@ -89,6 +100,15 @@ function Level(props) {
 
   return (
     <div className="task_style">
+      <Workbook filename="test.xlsx" element={<p></p>}>
+        <Workbook.Sheet data={data} name="first tab">
+          <Workbook.Column label="label" value="value"/>
+        </Workbook.Sheet>
+        <Workbook.Sheet data={data} name="second tab">
+          <Workbook.Column label="testing" value="hi"/>
+          <Workbook.Column label="second label" value="second val"/>
+        </Workbook.Sheet>
+      </Workbook>
       <div className="img_side">
       <Timer key={props.trials}></Timer>
       {blinkingImage()}
