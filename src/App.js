@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { CSVLink, CSVDownload } from 'react-csv';
 import './App.css';
 import Level from './Level';
+import Start from './Start';
 
 function App() {
 
@@ -33,11 +34,13 @@ function App() {
     return {path, file: LOA92Imgs(path), id: path.substring(3,imgId), weapons:path.substring(correctNum+1,correctNum+2)};
   });
 
+  const [startData, setStart] = useState({});
   const [mData, setMData] = useState([]);
   const [cData, setCData] = useState([]);
   const [nextLevel, setNext] = useState(false);
   const [levelIndex, setLevel] = useState(0);
   const [trials, setTrials] = useState(0);
+  const [transitionDone, setTransition] = useState(false);
   const order = [1, 3, 91, 92];
   const images = [LOA1, LOA3, LOA91, LOA92];
 
@@ -49,6 +52,10 @@ function App() {
         setNext(false);
     }
   }, [nextLevel]);
+
+  useEffect(()=>{
+    getDisplay();
+  }, [transitionDone]);
 
   function getOrder(){
     let array = [];
@@ -69,19 +76,25 @@ function App() {
 
   function getDisplay(){
     if(levelIndex <= 3){
-      return <Level 
-        mdata={mData}
-        setMData={setMData} 
-        cdata={cData}
-        setCData={setCData} 
-        order={getOrder()} 
-        images={images[levelIndex]} 
-        trials={trials} 
-        setTrials={setTrials} 
-        nextLevel={setNext} 
-        levelType={order[levelIndex]}
-      >
-      </Level>
+      if(transitionDone){
+        return <Level 
+          mdata={mData}
+          setMData={setMData} 
+          cdata={cData}
+          setCData={setCData} 
+          order={getOrder()} 
+          images={images[levelIndex]} 
+          trials={trials} 
+          setTrials={setTrials} 
+          nextLevel={setNext} 
+          levelType={order[levelIndex]}
+          startData={startData}
+        ></Level>
+      }
+      else{
+        return <Start startData={startData} setStart={setStart} setTransition={setTransition}></Start>
+      }
+      
     }
     else{
       console.log(mData);

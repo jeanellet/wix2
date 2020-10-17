@@ -87,3 +87,24 @@ code {
   align-self: center;
   margin: auto;
 }
+
+.transition-style{
+  text-align: center;
+  align-items: center;
+  margin:100px;
+  display:inline-flex;
+}
+
+.transition-style div{
+  width:50%;
+  height:50%;
+}
+
+.transition-style div:nth-child(2){
+  padding:50px;
+}
+
+.transition-style div img{
+  width:80%;
+  height:100%;
+}

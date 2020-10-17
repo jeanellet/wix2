@@ -11,11 +11,6 @@ function Level(props) {
   const types = ["Fragile", "Normal", "Oversize"];
   const rand = Math.round(Math.random() * 2);
   const trial_count = 3;
-  const capacities ={
-    "Fragile":3,
-    "Normal":3,
-    "Oversize":3
-  };
 
   const [monitoringDone, setMonitoring] = useState(false);
   const [countingDone, setCounting] = useState(false);
@@ -44,9 +39,10 @@ function Level(props) {
 
   useEffect(()=>{
     if(countingDone){
-      let counting_entry = writeC(props.levelType, props.trials, 0, props.images[props.trials].file, cResult.choice, rand_bag, cResult.count, capacities[cResult.choice]);
+      const myIndex = cResult.choice;
+      console.log("props.startData",props.startData);
+      let counting_entry = writeC(props.levelType, props.trials, 0, props.images[props.trials].file, cResult.choice, rand_bag, cResult.count, props.startData[myIndex]);
       props.setCData([...props.cdata, counting_entry]);
-      console.log("AAA");
       console.log(props.cdata);
     }
     else if(monitoringDone){
