@@ -7,30 +7,36 @@ function Counting(props){
     const [oversize_count, setOversize] = useState(0);
 
     function addFragile() {
+        props.result({...props.result, choice:"Fragile", count: fragile_count+1});
         setFragile(fragile_count+1);
         props.completed(true);
     }
 
     function emptyFragile(){
         setFragile(0);
+        props.result({...props.result, count:0});
     }
 
     function addNormal() {
+        props.result({...props.result, choice:"Normal", count:normal_count+1});
         setNormal(normal_count+1);
         props.completed(true);
     }
 
     function emptyNormal() {
         setNormal(0);
+        props.result({...props.result, count:0});
     }
 
     function addOversize() {
+        props.result({...props.result, choice:"Oversize", count:oversize_count+1});
         setOversize(oversize_count+1);
         props.completed(true);
     }
 
     function emptyOversize() {
         setOversize(0);
+        props.result({...props.result, count:0});
     }
 
     return(

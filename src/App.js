@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { CSVLink, CSVDownload } from 'react-csv';
 import './App.css';
 import Level from './Level';
 
@@ -32,22 +33,20 @@ function App() {
     return {path, file: LOA92Imgs(path), id: path.substring(3,imgId), weapons:path.substring(correctNum+1,correctNum+2)};
   });
 
+  const [mData, setMData] = useState([]);
+  const [cData, setCData] = useState([]);
   const [nextLevel, setNext] = useState(false);
   const [levelIndex, setLevel] = useState(0);
   const [trials, setTrials] = useState(0);
   const order = [1, 3, 91, 92];
   const images = [LOA1, LOA3, LOA91, LOA92];
 
+
   useEffect(()=>{
     if(nextLevel == true){
-      if(levelIndex == 3){
-        console.log("done with everything");
-      }
-      else{
         setLevel(levelIndex + 1);
         setTrials(0);
         setNext(false);
-      }
     }
   }, [nextLevel]);
 
@@ -68,10 +67,39 @@ function App() {
     return array;
   }
 
+  function getDisplay(){
+    if(levelIndex <= 3){
+      return <Level 
+        mdata={mData}
+        setMData={setMData} 
+        cdata={cData}
+        setCData={setCData} 
+        order={getOrder()} 
+        images={images[levelIndex]} 
+        trials={trials} 
+        setTrials={setTrials} 
+        nextLevel={setNext} 
+        levelType={order[levelIndex]}
+      >
+      </Level>
+    }
+    else{
+      console.log(mData);
+      console.log(cData);
+      let allData = mData.concat(cData);
+      return (
+        <CSVLink filename='test.csv' data={allData}>
+          Download
+        </CSVLink>
+      );
+    }
+  }
+
   return (
     <div>
-      <Level order={getOrder()} images={images[levelIndex]} trials={trials} setTrials={setTrials} nextLevel={setNext} levelType={order[levelIndex]}></Level>
+      {getDisplay()}
     </div>
+
   );
 }
 

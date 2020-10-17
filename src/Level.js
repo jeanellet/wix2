@@ -4,13 +4,18 @@ import ShowImage from './ShowImage';
 import Counting from './Counting';
 import Monitoring from './Monitoring';
 import Timer from './Timer';
-import { writeM } from './LogData';
-import Workbook from 'react-excel-workbook';
+import { writeM, writeC } from './LogData';
 
 function Level(props) {
-  const data = []
+  
   const types = ["Fragile", "Normal", "Oversize"];
   const rand = Math.round(Math.random() * 2);
+  const trial_count = 3;
+  const capacities ={
+    "Fragile":3,
+    "Normal":3,
+    "Oversize":3
+  };
 
   const [monitoringDone, setMonitoring] = useState(false);
   const [countingDone, setCounting] = useState(false);
@@ -25,23 +30,42 @@ function Level(props) {
 
   function getRandomBag(){
     const types = ["Fragile", "Normal", "Oversize"];
-    const rand = Math.round(Math.random() * 2);
-    setBag(types[rand]);
+    let random_index = Math.round(Math.random() * 2);
+    console.log(rand);
+    while(rand_bag == types[random_index]){
+        random_index = Math.round(Math.random() * 2);
+    }
+    setBag(types[rand])
+    return types[rand];
   }
 
   useEffect(()=>{
+    if(countingDone){
+      let counting_entry = writeC(props.levelType, props.trials, 0, props.images[props.trials].file, cResult.choice, rand_bag, cResult.count, capacities[cResult.choice]);
+      props.setCData([...props.cdata, counting_entry]);
+      console.log("AAA");
+      console.log(props.cdata);
+    }
+    else if(monitoringDone){
+      let monitoring_entry = writeM(props.levelType, props.trials, 0, false, props.images[props.trials].file, mResult.count, false, 0);
+      props.setMData([...props.mdata, monitoring_entry]);
+    }
+    
     if(monitoringDone && countingDone){
       setMonitoring(false);
       setCounting(false);
       
       setKey(key+2);
       props.setTrials(props.trials+1);
-      getRandomBag();
+      if(props.trials < trial_count){
+        getRandomBag();
+      }
     }
+    
   }, [monitoringDone, countingDone]);
 
   useEffect(()=>{
-    if(props.trials == 3){
+    if(props.trials == trial_count){
       props.nextLevel(true);
       console.log("done with task", props.levelType, props.images);
 
@@ -58,16 +82,6 @@ function Level(props) {
     }
 
   }, [props.trials]);
-
-  useEffect(()=>{
-    console.log("got mresults back", mResult);
-    writeM(props.levelType, props.trials, 0, false, props.images[props.trials].file, mResult.count, false, 0);
-  },[mResult]);
-
-  useEffect(()=>{
-    console.log("got cresults back", cResult);
-    //writeC(level, trial, duration, image, choice, correct, currentCount, capacity);
-  },[cResult]);
 
   useEffect(()=>{
     console.log("starting new level cue transitions");
@@ -100,15 +114,6 @@ function Level(props) {
 
   return (
     <div className="task_style">
-      <Workbook filename="test.xlsx" element={<p></p>}>
-        <Workbook.Sheet data={data} name="first tab">
-          <Workbook.Column label="label" value="value"/>
-        </Workbook.Sheet>
-        <Workbook.Sheet data={data} name="second tab">
-          <Workbook.Column label="testing" value="hi"/>
-          <Workbook.Column label="second label" value="second val"/>
-        </Workbook.Sheet>
-      </Workbook>
       <div className="img_side">
       <Timer key={props.trials}></Timer>
       {blinkingImage()}

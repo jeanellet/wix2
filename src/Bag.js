@@ -7,10 +7,14 @@ function Bag(){
         const types = ["Fragile", "Normal", "Oversize"];
         const rand = Math.round(Math.random() * 2);
         console.log(rand);
-        return <h2 className="bag_style">{types[rand]}</h2>
+        while(rand_bag == types[rand]){
+            rand = Math.round(Math.random() * 2);
+        }
+        setBag(types[rand])
+        return types[rand];
     }
 
-    return (<h3 className="bag_style">{getRandomBag()}</h3>);
+    //return (<h3 className="bag_style">{getRandomBag()}</h3>);
 }
 
 export default Bag;
