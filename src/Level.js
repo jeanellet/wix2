@@ -27,6 +27,9 @@ function Level(props) {
   const [mResult, setMResult] = useState({});
   const [cResult, setCResult] = useState({});
 
+  const [time, setTime] = useState(Date.now());
+  const [mTime, setMTime] = useState(Date.now());
+
 
   function getRandomBag(){
     const types = ["Fragile", "Normal", "Oversize"];
@@ -65,6 +68,8 @@ function Level(props) {
   }, [monitoringDone, countingDone]);
 
   useEffect(()=>{
+    setTime(Date.now());
+
     if(props.trials == trial_count){
       props.nextLevel(true);
       console.log("done with task", props.levelType, props.images);
@@ -80,7 +85,6 @@ function Level(props) {
         setImgs([props.images[2*props.order[props.trials]].file, props.images[2*props.order[props.trials]+1].file]);
       }
     }
-
   }, [props.trials]);
 
   useEffect(()=>{
@@ -121,8 +125,21 @@ function Level(props) {
     <h2 className="bag_style">{rand_bag}</h2>
   
     </div>
-    <Monitoring key={props.trials} weaponCount = {getWeaponCount()} highlightOk={isHighlight()} completed={setMonitoring} result={setMResult}></Monitoring>
-    <Counting key={"L"+props.levelType} completed={setCounting} result={setCResult}></Counting>
+    <Monitoring 
+      key={props.trials} 
+      weaponCount = {getWeaponCount()} 
+      highlightOk={isHighlight()} 
+      completed={setMonitoring} 
+      result={setMResult}
+      time={time}
+      setMTime={setMTime}
+    />
+    <Counting 
+      key={"L"+props.levelType} 
+      completed={setCounting} 
+      result={setCResult}
+      time={mTime}
+    />
     </div>
   );
 }

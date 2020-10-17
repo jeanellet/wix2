@@ -18,6 +18,8 @@ class Monitoring extends React.Component{
     
     clicked(number){
         this.setState({select:true});
+        const duration = Date.now() - this.props.time;
+        this.props.setMTime(Date.now())
         switch(number){
             case 0:
                 this.setState({button0:true});
@@ -25,7 +27,7 @@ class Monitoring extends React.Component{
                 this.setState({button2:false});
                 this.setState({button3:false});
                 this.setState({button4:false});
-                this.props.result({count:0});
+                this.props.result({count:0, duration: duration});
                 break;
             case 1:
                 this.setState({button0:false});
@@ -33,7 +35,7 @@ class Monitoring extends React.Component{
                 this.setState({button2:false});
                 this.setState({button3:false});
                 this.setState({button4:false});
-                this.props.result({count:1});
+                this.props.result({count:1, duration: duration});
                 break;
             case 2:
                 this.setState({button0:false});
@@ -41,7 +43,7 @@ class Monitoring extends React.Component{
                 this.setState({button2:true});
                 this.setState({button3:false});
                 this.setState({button4:false});
-                this.props.result({count:2});
+                this.props.result({count:2, duration: duration});
                 break;
             case 3:
                 this.setState({button0:false});
@@ -49,7 +51,7 @@ class Monitoring extends React.Component{
                 this.setState({button2:false});
                 this.setState({button3:true});
                 this.setState({button4:false});
-                this.props.result({count:3});
+                this.props.result({count:3, duration: duration});
                 break;
             case 4:
                 this.setState({button0:false});
@@ -57,7 +59,7 @@ class Monitoring extends React.Component{
                 this.setState({button2:false});
                 this.setState({button3:false});
                 this.setState({button4:true});
-                this.props.result({count:4});
+                this.props.result({count:4, duration: duration});
                 break;
             default:
                 break;
