@@ -9,30 +9,35 @@ function Start(props){
 
     const addImgs = require.context('./Additional_Screening', true, /\.jpg$/);
     const addimgs = addImgs.keys().map(path=>{return {path, file: addImgs(path)}});
-
-    const pattern_index = Math.round(Math.random() * 4);
-
+  
+    let pattern_index = Math.round(Math.random() * 4);
+    let chosen_add = addimgs[pattern_index].file;
     let capacities = [0,0,0];
     for(var i=0;i<capacities.length;i++){
         let size = Math.round(Math.random()*3+2);
         capacities[i] = size;
     }
-    
+    let temp={
+        pattern:chosen_add,
+        Fragile:capacities[0],
+        Normal:capacities[1],
+        Oversize:capacities[2]
+    };
+
+    const [dummy, setDummy] = useState(temp);
+
     function click(){
         setOrder(order+1);
-        console.log(order);
+        console.log("DUMMY",dummy);
         if(order >= 3){
-            props.setStart({...props.startData, 
-                pattern:pattern_index, 
-                Fragile:capacities[0],
-                Normal:capacities[1],
-                Oversize:capacities[2]
-            });
+            props.setStart({...dummy});
             props.setTransition(true);
         }
     }
 
     function first(){
+        console.log("on first");
+        
         return(
             <div className="transition-style">
                 <div>
@@ -48,10 +53,14 @@ function Start(props){
 
     function second(){
         //TODO randomly select pattern for additional screening and save for data
+        console.log("on second");
+        
+        
+
         return(
             <div className="transition-style">
                 <div>
-                    <img src={addimgs[pattern_index].file}/>
+                    <img src={dummy.pattern}/>
                 </div>
                 <div>
                     <h1>Some bags require additional screening. This image must be correctly identified to proceed.</h1>
@@ -63,15 +72,17 @@ function Start(props){
 
     function third(){
         // TODO randomly assign capacities and save
+        console.log("on third");
+        
         return(
             <div className="transition-style">
                 <div>
                     <img src={objects[0].file}/>
                 </div>
                 <div>
-                    <h1>Fragile: {capacities[0]} bags</h1>
-                    <h1>Normal: {capacities[1]} bags</h1>
-                    <h1>Oversize: {capacities[2]} bags</h1>
+                    <h1>Fragile: {dummy.Fragile} bags</h1>
+                    <h1>Normal: {dummy.Normal} bags</h1>
+                    <h1>Oversize: {dummy.Oversize} bags</h1>
                     <button onClick={click}><h2>Continue</h2></button>
                 </div>
             </div>

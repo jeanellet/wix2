@@ -34,6 +34,9 @@ function App() {
     return {path, file: LOA92Imgs(path), id: path.substring(3,imgId), weapons:path.substring(correctNum+1,correctNum+2)};
   });
 
+  const addImgs = require.context('./Additional_Screening', true, /\.jpg$/);
+  const addimgs = addImgs.keys().map(path=>{return {path, file: addImgs(path)}});
+
   const [startData, setStart] = useState({});
   const [mData, setMData] = useState([]);
   const [cData, setCData] = useState([]);
@@ -76,6 +79,8 @@ function App() {
   }
 
   function getDisplay(){
+    
+    console.log(transitionDone);
     if(levelIndex <= 3){
       if(transitionDone){
         return <Level 

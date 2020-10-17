@@ -6,6 +6,9 @@ class Monitoring extends React.Component{
 
     constructor(props){
         super(props);
+        let addImgs = require.context('./Additional_Screening', true, /\.jpg$/);
+        this.addimgs = addImgs.keys().map(path=>{return {path, file: addImgs(path)}});
+
         this.state = { 
             select: false,
             button0: false,
@@ -13,7 +16,11 @@ class Monitoring extends React.Component{
             button2: false,
             button3: false,
             button4: false,
-            isAddScreen: false
+            isAddScreen: false,
+            addImg: "",
+            wrong_count:0,
+            count: -1,
+            duration:-1
         }
     }
     
@@ -28,7 +35,7 @@ class Monitoring extends React.Component{
                 this.setState({button2:false});
                 this.setState({button3:false});
                 this.setState({button4:false});
-                this.props.result({count:0, duration: duration});
+                this.setState({count:0, duration:duration});
                 break;
             case 1:
                 this.setState({button0:false});
@@ -36,7 +43,7 @@ class Monitoring extends React.Component{
                 this.setState({button2:false});
                 this.setState({button3:false});
                 this.setState({button4:false});
-                this.props.result({count:1, duration: duration});
+                this.setState({count:1, duration:duration});
                 break;
             case 2:
                 this.setState({button0:false});
@@ -44,7 +51,7 @@ class Monitoring extends React.Component{
                 this.setState({button2:true});
                 this.setState({button3:false});
                 this.setState({button4:false});
-                this.props.result({count:2, duration: duration});
+                this.setState({count:2, duration: duration});
                 break;
             case 3:
                 this.setState({button0:false});
@@ -52,7 +59,7 @@ class Monitoring extends React.Component{
                 this.setState({button2:false});
                 this.setState({button3:true});
                 this.setState({button4:false});
-                this.props.result({count:3, duration: duration});
+                this.setState({count:3, duration: duration});
                 break;
             case 4:
                 this.setState({button0:false});
@@ -60,7 +67,7 @@ class Monitoring extends React.Component{
                 this.setState({button2:false});
                 this.setState({button3:false});
                 this.setState({button4:true});
-                this.props.result({count:4, duration: duration});
+                this.setState({count:4, duration: duration});
                 break;
             default:
                 break;
@@ -69,8 +76,12 @@ class Monitoring extends React.Component{
 
         //additional screening
         if(this.props.trials%4 == 0){
-            console.log("!!!!!!!!!!!!!!additional screening time", this.props.trials);
+            this.changeImg();
             this.setState({isAddScreen:true});
+            console.log("!!!!!!!!!!!!!!additional screening time", this.props.trials);
+        }
+        else{
+            this.props.result({count:number, duration: duration, wrong: -1});
         }
 
         this.props.completed(true);
@@ -84,10 +95,29 @@ class Monitoring extends React.Component{
     }
 
     closePopup(){
-        this.setState({isAddScreen:false});
+        console.log("correct img:",this.props.correctAdd, "current img:", this.state.addImg);
+        if(this.props.correctAdd == this.state.addImg){
+            console.log("correct!!!!!!");
+            this.setState({isAddScreen:false});
+            this.props.result({count:this.state.count, duration:this.state.duration, wrong: this.state.wrong_count});
+        }
+        else{
+            alert("Try again");
+            this.setState({wrong_count:this.state.wrong_count+1});
+        }
+        
+    }
+
+    changeImg(){
+        let pattern_index = Math.round(Math.random() * 4);    
+        while(this.state.addImg == this.addimgs[pattern_index].file){
+            pattern_index = Math.round(Math.random() * 4);
+        }
+        this.setState({addImg:this.addimgs[pattern_index].file});
     }
 
     render(){
+        
         return(
             <div className="monitoring_style">
                 <h2>Select number of weapons:</h2>
@@ -96,9 +126,14 @@ class Monitoring extends React.Component{
                 <button className={this.isClicked(2, this.state.button2)} onClick={() => this.clicked(2)}>2</button>
                 <button className={this.isClicked(3, this.state.button3)} onClick={() => this.clicked(3)}>3</button>
                 <button className={this.isClicked(4, this.state.button4)} onClick={() => this.clicked(4)}>4</button>
-                <Popup open={this.state.isAddScreen} modal>
-                    <div className="modal">
-                        <h2>Additional Screening</h2>
+                <Popup open={this.state.isAddScreen} closeOnDocumentClick={false} modal>
+                    <div className="modal add-popup">
+                        <h2>Please do additional screening on this baggage.</h2>
+                        <img src={this.state.addImg}/>
+                        <div>
+                            <button onClick={this.changeImg.bind(this)}><h2>Next</h2></button>
+                            <button onClick={this.closePopup.bind(this)}><h2>Finish</h2></button>
+                        </div>
                     </div>
                 </Popup>
             </div>

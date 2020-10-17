@@ -130,6 +130,7 @@ function Level(props) {
       time={time}
       setMTime={setMTime}
       trials={props.trials}
+      correctAdd={props.startData.pattern}
     />
     <Counting 
       key={"L"+props.levelType} 

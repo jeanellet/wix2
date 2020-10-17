@@ -19,11 +19,10 @@ code {
   width: 50%;
 }
 .image_style {
-  width: 100%;
+  width: 80%;
   margin: 50px;
 }
 .image_style img {
-  width: 70%;
   text-align: center;
   margin: 30px;
 }
@@ -39,7 +38,6 @@ code {
 .monitoring_style {
   width: 25%;
   margin: 50px;
-  border-style: solid;
   text-align: center;
 }
 
@@ -120,5 +118,31 @@ code {
 .survey-style {
   text-align: center;
   align-items: center;
-  margin: 100px;
+  margin:100px;
+}
+
+.add-popup{
+  align-content: center;
+}
+.add-popup img{
+  width:40%;
+  margin:auto;
+}
+
+.add-popup div{
+  align-content: center;
+  margin:auto;
+}
+
+.add-popup div button{
+  display:inline-flex;
+  text-align: center;
+  width:100px;
+  height:50px;
+  margin:10px;
+}
+
+.add-popup div button h2{
+  align-self: center;
+  margin: auto;
 }
