@@ -1,118 +1,124 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-.task_style{
-  display:inline-flex;
+.task_style {
+  display: inline-flex;
 }
-.img_side{
-  width:50%;
+.img_side {
+  width: 50%;
 }
-.image_style{
-  width:100%;
-  margin:50px;
+.image_style {
+  width: 100%;
+  margin: 50px;
 }
-.image_style img{
-  width:70%;
+.image_style img {
+  width: 70%;
   text-align: center;
   margin: 30px;
 }
 
-.timer{
-  text-align: center;
-  
-}
-
-.bag_style{
+.timer {
   text-align: center;
 }
 
-.monitoring_style{
-  width:25%;
-  margin:50px;
-  border-style:solid;
+.bag_style {
+  text-align: center;
+}
+
+.monitoring_style {
+  width: 25%;
+  margin: 50px;
+  border-style: solid;
+  text-align: center;
+}
+
+.center_items {
+  display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.monitoring_style button{
-  width:150px;
-  height:50px;
-  margin:10px;
+.monitoring_style button {
+  width: 150px;
+  height: 50px;
+  margin: 10px;
 }
 
-.clickedBtn{
+.clickedBtn {
   background-color: gray;
 }
 
-.unclickedBtn{
+.unclickedBtn {
   background-color: white;
 }
 
-.highlightRed{
-  background-color:red;
+.highlightRed {
+  background-color: red;
 }
 
-.counting_style{
-  width:25%;
-  margin:50px;
-}
-
-.counting_style h1{
+.counting_style {
+  width: 25%;
+  margin: 50px;
   text-align: center;
-  margin:auto;
 }
 
-.count_btns{
+.counting_style h1 {
+  text-align: center;
+  margin: auto;
+}
+
+.count_btns {
   align-items: center;
-  margin:auto;
+  margin: auto;
 }
 
-.counting_style button{
-  display:inline-flex;
+.counting_style button {
+  display: inline-flex;
   align-content: center;
-  width:100px;
-  height:50px;
-  margin:10px;
+  width: 100px;
+  height: 50px;
+  margin: 10px;
 }
 
-.counting_style button p{  
+.counting_style button p {
   align-self: center;
   margin: auto;
 }
 
-.transition-style{
+.transition-style {
   text-align: center;
   align-items: center;
-  margin:100px;
-  display:inline-flex;
+  margin: 100px;
+  display: inline-flex;
 }
 
-.transition-style div{
-  width:50%;
-  height:50%;
+.transition-style div {
+  width: 50%;
+  height: 50%;
 }
 
-.transition-style div:nth-child(2){
-  padding:50px;
+.transition-style div:nth-child(2) {
+  padding: 50px;
 }
 
-.transition-style div img{
-  width:80%;
-  height:100%;
+.transition-style div img {
+  width: 80%;
+  height: 100%;
 }
 
-.survey-style{
+.survey-style {
   text-align: center;
   align-items: center;
-  margin:100px;
+  margin: 100px;
 }
