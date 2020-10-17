@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/wix2/static/css/main.529fb2fa.chunk.css",
-    "main.js": "/wix2/static/js/main.47ce08a4.chunk.js",
-    "main.js.map": "/wix2/static/js/main.47ce08a4.chunk.js.map",
+    "main.css": "/wix2/static/css/main.e016db4a.chunk.css",
+    "main.js": "/wix2/static/js/main.0c8d52c8.chunk.js",
+    "main.js.map": "/wix2/static/js/main.0c8d52c8.chunk.js.map",
     "runtime-main.js": "/wix2/static/js/runtime-main.2e1fa45f.js",
     "runtime-main.js.map": "/wix2/static/js/runtime-main.2e1fa45f.js.map",
-    "static/js/2.8cc594ff.chunk.js": "/wix2/static/js/2.8cc594ff.chunk.js",
-    "static/js/2.8cc594ff.chunk.js.map": "/wix2/static/js/2.8cc594ff.chunk.js.map",
+    "static/js/2.be9ff5d4.chunk.js": "/wix2/static/js/2.be9ff5d4.chunk.js",
+    "static/js/2.be9ff5d4.chunk.js.map": "/wix2/static/js/2.be9ff5d4.chunk.js.map",
     "index.html": "/wix2/index.html",
-    "precache-manifest.ea71b7ebd37439da9a0f140ee1bb56ea.js": "/wix2/precache-manifest.ea71b7ebd37439da9a0f140ee1bb56ea.js",
+    "precache-manifest.8b15547262d8cc96aa58f4521fd0ebbf.js": "/wix2/precache-manifest.8b15547262d8cc96aa58f4521fd0ebbf.js",
     "service-worker.js": "/wix2/service-worker.js",
-    "static/css/main.529fb2fa.chunk.css.map": "/wix2/static/css/main.529fb2fa.chunk.css.map",
-    "static/js/2.8cc594ff.chunk.js.LICENSE.txt": "/wix2/static/js/2.8cc594ff.chunk.js.LICENSE.txt",
+    "static/css/main.e016db4a.chunk.css.map": "/wix2/static/css/main.e016db4a.chunk.css.map",
+    "static/js/2.be9ff5d4.chunk.js.LICENSE.txt": "/wix2/static/js/2.be9ff5d4.chunk.js.LICENSE.txt",
     "static/media/B10_5_1.png": "/wix2/static/media/B10_5_1.96395ecf.png",
     "static/media/B10_90_2.png": "/wix2/static/media/B10_90_2.25321b67.png",
     "static/media/B10_9_2.png": "/wix2/static/media/B10_9_2.c4e808b0.png",
@@ -101,12 +101,18 @@
     "static/media/B6_5_3.png": "/wix2/static/media/B6_5_3.8018635a.png",
     "static/media/B9_10_1.png": "/wix2/static/media/B9_10_1.7263ae0f.png",
     "static/media/B9_1_1.png": "/wix2/static/media/B9_1_1.d0d4b63a.png",
-    "static/media/B9_4_3.png": "/wix2/static/media/B9_4_3.d88fa2cd.png"
+    "static/media/B9_4_3.png": "/wix2/static/media/B9_4_3.d88fa2cd.png",
+    "static/media/Objects.png": "/wix2/static/media/Objects.42714596.png",
+    "static/media/blue.jpg": "/wix2/static/media/blue.89643ea9.jpg",
+    "static/media/cyan.jpg": "/wix2/static/media/cyan.8bde7e00.jpg",
+    "static/media/green.jpg": "/wix2/static/media/green.e4064255.jpg",
+    "static/media/red.jpg": "/wix2/static/media/red.e368df29.jpg",
+    "static/media/yellow.jpg": "/wix2/static/media/yellow.0fc15a3f.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.2e1fa45f.js",
-    "static/js/2.8cc594ff.chunk.js",
-    "static/css/main.529fb2fa.chunk.css",
-    "static/js/main.47ce08a4.chunk.js"
+    "static/js/2.be9ff5d4.chunk.js",
+    "static/css/main.e016db4a.chunk.css",
+    "static/js/main.0c8d52c8.chunk.js"
   ]
 }
