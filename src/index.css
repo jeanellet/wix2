@@ -40,6 +40,8 @@ code {
 .monitoring_style{
   width:25%;
   margin:50px;
+  border-style:solid;
+  justify-content: center;
 }
 
 .monitoring_style button{
@@ -107,4 +109,10 @@ code {
 .transition-style div img{
   width:80%;
   height:100%;
+}
+
+.survey-style{
+  text-align: center;
+  align-items: center;
+  margin:100px;
 }

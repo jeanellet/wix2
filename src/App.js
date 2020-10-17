@@ -50,6 +50,7 @@ function App() {
         setLevel(levelIndex + 1);
         setTrials(0);
         setNext(false);
+        setTransition(false);
     }
   }, [nextLevel]);
 
@@ -92,7 +93,7 @@ function App() {
         ></Level>
       }
       else{
-        return <Start startData={startData} setStart={setStart} setTransition={setTransition}></Start>
+        return <Start levelIndex={levelIndex} startData={startData} setStart={setStart} setTransition={setTransition}></Start>
       }
       
     }

@@ -10,7 +10,7 @@ function Level(props) {
   
   const types = ["Fragile", "Normal", "Oversize"];
   const rand = Math.round(Math.random() * 2);
-  const trial_count = 3;
+  const trial_count = 6;
 
   const [monitoringDone, setMonitoring] = useState(false);
   const [countingDone, setCounting] = useState(false);
@@ -41,12 +41,12 @@ function Level(props) {
     if(countingDone){
       const myIndex = cResult.choice;
       console.log("props.startData",props.startData);
-      let counting_entry = writeC(props.levelType, props.trials, 0, props.images[props.trials].file, cResult.choice, rand_bag, cResult.count, props.startData[myIndex]);
+      let counting_entry = writeC(props.levelType, props.trials, cResult.duration, props.images[props.trials].file, cResult.choice, rand_bag, cResult.count, props.startData[myIndex]);
       props.setCData([...props.cdata, counting_entry]);
       console.log(props.cdata);
     }
     else if(monitoringDone){
-      let monitoring_entry = writeM(props.levelType, props.trials, 0, false, props.images[props.trials].file, mResult.count, false, 0);
+      let monitoring_entry = writeM(props.levelType, props.trials, mResult.duration, mResult.duration < 15000, props.images[props.trials].file, mResult.count, false, 0);
       props.setMData([...props.mdata, monitoring_entry]);
     }
     
@@ -129,6 +129,7 @@ function Level(props) {
       result={setMResult}
       time={time}
       setMTime={setMTime}
+      trials={props.trials}
     />
     <Counting 
       key={"L"+props.levelType} 
