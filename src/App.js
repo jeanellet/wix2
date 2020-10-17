@@ -47,7 +47,6 @@ function App() {
   const order = [1, 3, 91, 92];
   const images = [LOA1, LOA3, LOA91, LOA92];
 
-
   useEffect(()=>{
     if(nextLevel == true){
         setLevel(levelIndex + 1);
@@ -74,13 +73,10 @@ function App() {
       array[current] = array[top];
       array[top] = tmp;
     }
-    console.log(images[levelIndex],array);
     return array;
   }
 
   function getDisplay(){
-    
-    console.log(transitionDone);
     if(levelIndex <= 3){
       if(transitionDone){
         return <Level 
@@ -103,8 +99,6 @@ function App() {
       
     }
     else{
-      console.log(mData);
-      console.log(cData);
       let allData = mData.concat(cData);
       return (
         <CSVLink filename='test.csv' data={allData}>

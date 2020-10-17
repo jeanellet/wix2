@@ -7,36 +7,66 @@ function Counting(props){
     const [oversize_count, setOversize] = useState(0);
 
     function addFragile() {
-        setFragile(fragile_count+1);
-        props.completed(true);
-        props.result({...props.result, choice:"Fragile", count: fragile_count+1, duration: Date.now() - props.time});
+        if(!props.mDone){
+            alert("Please select number of weapons.");
+        }
+        else{
+            setFragile(fragile_count+1);
+            props.completed(true);
+            props.result({...props.result, choice:"Fragile", count: fragile_count+1, duration: Date.now() - props.time});
+        }
     }
 
     function emptyFragile(){
-        setFragile(0);
-        props.result({...props.result, count:0});
+        if(!props.mDone){
+            alert("Please select number of weapons.");
+        }
+        else{
+            setFragile(0);
+            props.result({...props.result, count:0});
+        }
     }
 
     function addNormal() {
-        setNormal(normal_count+1);
-        props.completed(true);
-        props.result({...props.result, choice:"Normal", count:normal_count+1, duration: Date.now() - props.time});
+        if(!props.mDone){
+            alert("Please select number of weapons.");
+        }
+        else{
+            setNormal(normal_count+1);
+            props.completed(true);
+            props.result({...props.result, choice:"Normal", count:normal_count+1, duration: Date.now() - props.time});
+        }
     }
 
     function emptyNormal() {
-        setNormal(0);
-        props.result({...props.result, count:0});
+        if(!props.mDone){
+            alert("Please select number of weapons.");
+        }
+        else{
+            setNormal(0);
+            props.result({...props.result, count:0});
+        }
     }
 
     function addOversize() {
-        setOversize(oversize_count+1);
-        props.completed(true);
-        props.result({...props.result, choice:"Oversize", count:oversize_count+1, duration: Date.now() - props.time});
+        if(!props.mDone){
+            alert("Please select number of weapons.");
+        }
+        else{
+            setOversize(oversize_count+1);
+            props.completed(true);
+            props.result({...props.result, choice:"Oversize", count:oversize_count+1, duration: Date.now() - props.time});
+        }
     }
 
     function emptyOversize() {
-        setOversize(0);
-        props.result({...props.result, count:0});
+        if(!props.mDone){
+            alert("Please select number of weapons.");
+        }
+        else{
+            setOversize(0);
+            props.result({...props.result, count:0});
+        }
     }
 
     return(

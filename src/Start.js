@@ -28,7 +28,6 @@ function Start(props){
 
     function click(){
         setOrder(order+1);
-        console.log("DUMMY",dummy);
         if(order >= 3){
             props.setStart({...dummy});
             props.setTransition(true);
@@ -36,8 +35,6 @@ function Start(props){
     }
 
     function first(){
-        console.log("on first");
-        
         return(
             <div className="transition-style">
                 <div>
@@ -52,11 +49,6 @@ function Start(props){
     }
 
     function second(){
-        //TODO randomly select pattern for additional screening and save for data
-        console.log("on second");
-        
-        
-
         return(
             <div className="transition-style">
                 <div>
@@ -70,10 +62,7 @@ function Start(props){
         )
     }
 
-    function third(){
-        // TODO randomly assign capacities and save
-        console.log("on third");
-        
+    function third(){     
         return(
             <div className="transition-style">
                 <div>

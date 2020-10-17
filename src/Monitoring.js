@@ -72,19 +72,18 @@ class Monitoring extends React.Component{
             default:
                 break;
         }
-        console.log("clicked " + number);
 
         //additional screening
         if(this.props.trials%4 == 0){
             this.changeImg();
             this.setState({isAddScreen:true});
-            console.log("!!!!!!!!!!!!!!additional screening time", this.props.trials);
         }
         else{
             this.props.result({count:number, duration: duration, wrong: -1});
+            this.props.completed(true);
         }
 
-        this.props.completed(true);
+        
     }
 
     isClicked(count, btn){
@@ -95,11 +94,10 @@ class Monitoring extends React.Component{
     }
 
     closePopup(){
-        console.log("correct img:",this.props.correctAdd, "current img:", this.state.addImg);
         if(this.props.correctAdd == this.state.addImg){
-            console.log("correct!!!!!!");
             this.setState({isAddScreen:false});
             this.props.result({count:this.state.count, duration:this.state.duration, wrong: this.state.wrong_count});
+            this.props.completed(true);
         }
         else{
             alert("Try again");

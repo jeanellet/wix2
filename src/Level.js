@@ -10,7 +10,7 @@ function Level(props) {
   
   const types = ["Fragile", "Normal", "Oversize"];
   const rand = Math.round(Math.random() * 2);
-  const trial_count = 6;
+  const trial_count = 3;
 
   const [monitoringDone, setMonitoring] = useState(false);
   const [countingDone, setCounting] = useState(false);
@@ -29,7 +29,6 @@ function Level(props) {
   function getRandomBag(){
     const types = ["Fragile", "Normal", "Oversize"];
     let random_index = Math.round(Math.random() * 2);
-    console.log(rand);
     while(rand_bag == types[random_index]){
         random_index = Math.round(Math.random() * 2);
     }
@@ -40,13 +39,13 @@ function Level(props) {
   useEffect(()=>{
     if(countingDone){
       const myIndex = cResult.choice;
-      console.log("props.startData",props.startData);
       let counting_entry = writeC(props.levelType, props.trials, cResult.duration, props.images[props.trials].file, cResult.choice, rand_bag, cResult.count, props.startData[myIndex]);
       props.setCData([...props.cdata, counting_entry]);
-      console.log(props.cdata);
     }
     else if(monitoringDone){
-      let monitoring_entry = writeM(props.levelType, props.trials, mResult.duration, mResult.duration < 15000, props.images[props.trials].file, mResult.count, false, 0);
+      const hadAdd = mResult.wrong == -1 ? "False":"True";
+      const count = mResult.wrong >=0 ? mResult.wrong:"";
+      let monitoring_entry = writeM(props.levelType, props.trials, mResult.duration, mResult.duration < 15000, props.images[props.trials].file, mResult.count, hadAdd, count);
       props.setMData([...props.mdata, monitoring_entry]);
     }
     
@@ -68,25 +67,17 @@ function Level(props) {
 
     if(props.trials == trial_count){
       props.nextLevel(true);
-      console.log("done with task", props.levelType, props.images);
 
     }
     if(props.levelType == 3 || props.levelType == 92){
       const path1 = props.images[2*props.order[props.trials]].path;
       const path2 = props.images[2*props.order[props.trials]+1].path;
       setImgs([props.images[2*props.order[props.trials]].file, props.images[2*props.order[props.trials]+1].file]);
-      console.log(path1.substring(3,path1.indexOf("_")),path2.substring(3,path2.indexOf("_")));
       if(path1.substring(3,path1.indexOf("_")) != path2.substring(3,path2.indexOf("_"))){
-        console.log("mismatched")
         setImgs([props.images[2*props.order[props.trials]].file, props.images[2*props.order[props.trials]+1].file]);
       }
     }
   }, [props.trials]);
-
-  useEffect(()=>{
-    console.log("starting new level cue transitions");
-    
-  },[props.levelType]);
 
   function blinkingImage(){
     if (props.levelType == 1 || props.levelType == 91){
@@ -96,7 +87,6 @@ function Level(props) {
         />)
     }
     else{
-        console.log("sending these",imgs);
         return(<ShowImage key={key+1} images={imgs}></ShowImage>)
     }
   }
@@ -134,6 +124,7 @@ function Level(props) {
     />
     <Counting 
       key={"L"+props.levelType} 
+      mDone={monitoringDone}
       completed={setCounting} 
       result={setCResult}
       time={mTime}

@@ -2,7 +2,6 @@ import React from 'react';
 
 // signature for writing monitoring tasks
 export const writeM = (level, trial, duration, onTime, image, choice, addScreen, wrongAdd)=>{
-    console.log("writing monitoring to data", choice);
     var entry = {
         Level: level,
         Action: "Monitoring",
@@ -18,7 +17,6 @@ export const writeM = (level, trial, duration, onTime, image, choice, addScreen,
 }
 
 export const writeC = (level, trial, duration, image, choice, correct, currentCount, capacity) =>{
-    console.log("writing counting to data");
     var entry = {
         Level: level,
         Action: "Counting",
