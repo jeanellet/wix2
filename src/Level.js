@@ -10,7 +10,7 @@ function Level(props) {
   
   const types = ["Fragile", "Normal", "Oversize"];
   const rand = Math.round(Math.random() * 2);
-  const trial_count = 3;
+  const trial_count = 10;
 
   const [monitoringDone, setMonitoring] = useState(false);
   const [countingDone, setCounting] = useState(false);
@@ -39,13 +39,13 @@ function Level(props) {
   useEffect(()=>{
     if(countingDone){
       const myIndex = cResult.choice;
-      let counting_entry = writeC(props.levelType, props.trials, cResult.duration, props.images[props.trials].file, cResult.choice, rand_bag, cResult.count, props.startData[myIndex]);
+      let counting_entry = writeC(props.levelType, props.trials+1, cResult.duration, props.images[props.trials].file, cResult.choice, rand_bag, cResult.count, props.startData[myIndex]);
       props.setCData([...props.cdata, counting_entry]);
     }
     else if(monitoringDone){
       const hadAdd = mResult.wrong == -1 ? "False":"True";
       const count = mResult.wrong >=0 ? mResult.wrong:"";
-      let monitoring_entry = writeM(props.levelType, props.trials, mResult.duration, mResult.duration < 15000, props.images[props.trials].file, mResult.count, hadAdd, count);
+      let monitoring_entry = writeM(props.levelType, props.trials+1, mResult.duration, mResult.duration < 15000, props.images[props.trials].file, mResult.count, hadAdd, count);
       props.setMData([...props.mdata, monitoring_entry]);
     }
     
