@@ -74,17 +74,17 @@ function Counting(props){
             <h1>Fragile</h1>
             <h1>{fragile_count}</h1>
             <div className="count_btns">
-                <button onClick={addFragile}><p>Add</p></button>
-                <button onClick={emptyFragile}><p>New Bin</p></button>
+                <button onClick={addFragile}><h2>Add</h2></button>
+                <button onClick={emptyFragile}><h2>New Bin</h2></button>
             </div>
             <h1>Normal</h1>
             <h1>{normal_count}</h1>
-            <button onClick={addNormal}><p>Add</p></button>
-            <button onClick={emptyNormal}><p>New Bin</p></button>
+            <button onClick={addNormal}><h2>Add</h2></button>
+            <button onClick={emptyNormal}><h2>New Bin</h2></button>
             <h1>Oversize</h1>
-            < h1>{oversize_count}</h1>
-            <button onClick={addOversize}><p>Add</p></button>
-            <button onClick={emptyOversize}><p>New Bin</p></button>
+            <h1>{oversize_count}</h1>
+            <button onClick={addOversize}><h2>Add</h2></button>
+            <button onClick={emptyOversize}><h2>New Bin</h2></button>
         </div>
     )
 };

@@ -53,6 +53,11 @@ code {
   margin: 10px;
 }
 
+.monitoring_style button h2 {
+  align-self: center;
+  margin: auto;
+}
+
 .clickedBtn {
   background-color: gray;
 }
@@ -89,7 +94,7 @@ code {
   margin: 10px;
 }
 
-.counting_style button p {
+.counting_style button h2 {
   align-self: center;
   margin: auto;
 }
@@ -119,6 +124,10 @@ code {
   text-align: center;
   align-items: center;
   margin:100px;
+}
+
+.survey-style button{
+  text-decoration: none;
 }
 
 .add-popup{

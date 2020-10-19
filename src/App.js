@@ -101,9 +101,15 @@ function App() {
     else{
       let allData = mData.concat(cData);
       return (
-        <CSVLink filename='test.csv' data={allData}>
-          Download
-        </CSVLink>
+        <div className="survey-style">
+                <h1>You are now done with the experiment. Please download your data and send to the proctor. Thank you for your time.</h1>
+                <button>
+                  <CSVLink filename='data.csv' data={allData}>
+                    <h1>Download My Data</h1>
+                  </CSVLink>
+                </button>
+        </div>
+        
       );
     }
   }

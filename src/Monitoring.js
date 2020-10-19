@@ -119,11 +119,11 @@ class Monitoring extends React.Component{
         return(
             <div className="monitoring_style">
                 <h2>Select number of weapons:</h2>
-                <button className={this.isClicked(0, this.state.button0)} onClick={() => this.clicked(0)}>0</button>
-                <button className={this.isClicked(1, this.state.button1)} onClick={() => this.clicked(1)}>1</button>
-                <button className={this.isClicked(2, this.state.button2)} onClick={() => this.clicked(2)}>2</button>
-                <button className={this.isClicked(3, this.state.button3)} onClick={() => this.clicked(3)}>3</button>
-                <button className={this.isClicked(4, this.state.button4)} onClick={() => this.clicked(4)}>4</button>
+                <button className={this.isClicked(0, this.state.button0)} onClick={() => this.clicked(0)}><h2>0</h2></button>
+                <button className={this.isClicked(1, this.state.button1)} onClick={() => this.clicked(1)}><h2>1</h2></button>
+                <button className={this.isClicked(2, this.state.button2)} onClick={() => this.clicked(2)}><h2>2</h2></button>
+                <button className={this.isClicked(3, this.state.button3)} onClick={() => this.clicked(3)}><h2>3</h2></button>
+                <button className={this.isClicked(4, this.state.button4)} onClick={() => this.clicked(4)}><h2>4</h2></button>
                 <Popup open={this.state.isAddScreen} closeOnDocumentClick={false} modal>
                     <div className="modal add-popup">
                         <h2>Please do additional screening on this baggage.</h2>
