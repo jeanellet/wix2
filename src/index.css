@@ -58,6 +58,11 @@ code {
   margin: auto;
 }
 
+.add-popup {
+  align-self: center;
+  margin: auto;
+}
+
 .clickedBtn {
   background-color: gray;
 }
@@ -130,17 +135,19 @@ code {
   text-decoration: none;
 }
 
-.add-popup{
-  align-content: center;
-}
 .add-popup img{
   width:40%;
-  margin:auto;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  display: block;
 }
 
 .add-popup div{
-  align-content: center;
-  margin:auto;
+  align-items: center;
+  width:40%;
+  margin: auto;
 }
 
 .add-popup div button{
@@ -148,10 +155,23 @@ code {
   text-align: center;
   width:100px;
   height:50px;
-  margin:10px;
+  text-align: center;
+  margin: auto;
+}
+
+.add-popup div button:nth-child(1){
+  float:left;
+}
+
+.add-popup div button:nth-child(2){
+  float:right;
 }
 
 .add-popup div button h2{
   align-self: center;
   margin: auto;
+}
+
+.add-popup h2{
+  text-align: center;
 }
