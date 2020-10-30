@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/wix2/static/css/main.81c6577e.chunk.css",
-    "main.js": "/wix2/static/js/main.1221e547.chunk.js",
-    "main.js.map": "/wix2/static/js/main.1221e547.chunk.js.map",
+    "main.js": "/wix2/static/js/main.ca718358.chunk.js",
+    "main.js.map": "/wix2/static/js/main.ca718358.chunk.js.map",
     "runtime-main.js": "/wix2/static/js/runtime-main.2e1fa45f.js",
     "runtime-main.js.map": "/wix2/static/js/runtime-main.2e1fa45f.js.map",
     "static/css/2.f1b50ea8.chunk.css": "/wix2/static/css/2.f1b50ea8.chunk.css",
-    "static/js/2.ee033b39.chunk.js": "/wix2/static/js/2.ee033b39.chunk.js",
-    "static/js/2.ee033b39.chunk.js.map": "/wix2/static/js/2.ee033b39.chunk.js.map",
+    "static/js/2.7a296e08.chunk.js": "/wix2/static/js/2.7a296e08.chunk.js",
+    "static/js/2.7a296e08.chunk.js.map": "/wix2/static/js/2.7a296e08.chunk.js.map",
     "index.html": "/wix2/index.html",
-    "precache-manifest.3bdfce17c88a7d591f9fbe07a594e578.js": "/wix2/precache-manifest.3bdfce17c88a7d591f9fbe07a594e578.js",
+    "precache-manifest.ba95edeabf4ea1c9484a0804bb5d7b2e.js": "/wix2/precache-manifest.ba95edeabf4ea1c9484a0804bb5d7b2e.js",
     "service-worker.js": "/wix2/service-worker.js",
     "static/css/2.f1b50ea8.chunk.css.map": "/wix2/static/css/2.f1b50ea8.chunk.css.map",
     "static/css/main.81c6577e.chunk.css.map": "/wix2/static/css/main.81c6577e.chunk.css.map",
-    "static/js/2.ee033b39.chunk.js.LICENSE.txt": "/wix2/static/js/2.ee033b39.chunk.js.LICENSE.txt",
+    "static/js/2.7a296e08.chunk.js.LICENSE.txt": "/wix2/static/js/2.7a296e08.chunk.js.LICENSE.txt",
     "static/media/B10_5_1.png": "/wix2/static/media/B10_5_1.96395ecf.png",
     "static/media/B10_90_2.png": "/wix2/static/media/B10_90_2.25321b67.png",
     "static/media/B10_9_2.png": "/wix2/static/media/B10_9_2.c4e808b0.png",
@@ -75,8 +75,8 @@
     "static/media/B44_260_2.png": "/wix2/static/media/B44_260_2.d3399ad0.png",
     "static/media/B44_26_2.png": "/wix2/static/media/B44_26_2.579519af.png",
     "static/media/B44_42_2.png": "/wix2/static/media/B44_42_2.3f44ff13.png",
-    "static/media/B45_710_3.png": "/wix2/static/media/B45_710_3.d9a3602e.png",
-    "static/media/B45_71_3.png": "/wix2/static/media/B45_71_3.ec3cc115.png",
+    "static/media/B45_710_3.png": "/wix2/static/media/B45_710_3.4765cad0.png",
+    "static/media/B45_71_3.png": "/wix2/static/media/B45_71_3.792a3f48.png",
     "static/media/B46_0192_3.png": "/wix2/static/media/B46_0192_3.b8f739c5.png",
     "static/media/B46_110_1.png": "/wix2/static/media/B46_110_1.8ff0a94c.png",
     "static/media/B46_12_2.png": "/wix2/static/media/B46_12_2.5affb6ee.png",
@@ -104,8 +104,6 @@
     "static/media/B4_1_3.png": "/wix2/static/media/B4_1_3.184f8a87.png",
     "static/media/B4_70_2.png": "/wix2/static/media/B4_70_2.3c81974c.png",
     "static/media/B4_7_2.png": "/wix2/static/media/B4_7_2.b7081117.png",
-    "static/media/B50_1910_3.png": "/wix2/static/media/B50_1910_3.029ce226.png",
-    "static/media/B50_191_3.png": "/wix2/static/media/B50_191_3.6e62a688.png",
     "static/media/B51_1920_3.png": "/wix2/static/media/B51_1920_3.b61976a4.png",
     "static/media/B51_192_3.png": "/wix2/static/media/B51_192_3.c9601d4d.png",
     "static/media/B52_1960_1.png": "/wix2/static/media/B52_1960_1.b9f1b8c6.png",
@@ -137,7 +135,6 @@
     "static/media/B9_4_3.png": "/wix2/static/media/B9_4_3.d88fa2cd.png",
     "static/media/Objects.png": "/wix2/static/media/Objects.42714596.png",
     "static/media/blue.jpg": "/wix2/static/media/blue.89643ea9.jpg",
-    "static/media/cyan.jpg": "/wix2/static/media/cyan.8bde7e00.jpg",
     "static/media/green.jpg": "/wix2/static/media/green.e4064255.jpg",
     "static/media/red.jpg": "/wix2/static/media/red.e368df29.jpg",
     "static/media/yellow.jpg": "/wix2/static/media/yellow.0fc15a3f.jpg"
@@ -145,8 +142,8 @@
   "entrypoints": [
     "static/js/runtime-main.2e1fa45f.js",
     "static/css/2.f1b50ea8.chunk.css",
-    "static/js/2.ee033b39.chunk.js",
+    "static/js/2.7a296e08.chunk.js",
     "static/css/main.81c6577e.chunk.css",
-    "static/js/main.1221e547.chunk.js"
+    "static/js/main.ca718358.chunk.js"
   ]
 }
