@@ -27,7 +27,7 @@ class Monitoring extends React.Component{
     clicked(number){
         this.setState({select:true});
         const duration = Date.now() - this.props.time;
-        this.props.setMTime(Date.now())
+        console.log("stop monitoring");
         switch(number){
             case 0:
                 this.setState({button0:true});
@@ -74,12 +74,19 @@ class Monitoring extends React.Component{
         }
 
         //additional screening
-        if(this.props.trials%4 == 0){
-            this.changeImg();
-            this.setState({isAddScreen:true});
+        if(!this.props.addDone && this.props.trials%4 == 0){
+            //this.changeImg();
+            //this.setState({isAddScreen:true});
+
+            this.props.result({count:number, duration: duration, wrong: -1});
+            console.log("start counting");
+            this.props.setMTime(Date.now());
+            this.props.completed(true);
         }
         else{
             this.props.result({count:number, duration: duration, wrong: -1});
+            console.log("start counting");
+            this.props.setMTime(Date.now());
             this.props.completed(true);
         }
 
@@ -96,7 +103,10 @@ class Monitoring extends React.Component{
     closePopup(){
         if(this.props.correctAdd == this.state.addImg){
             this.setState({isAddScreen:false});
+            this.props.setAdd(true);
             this.props.result({count:this.state.count, duration:this.state.duration, wrong: this.state.wrong_count});
+            this.props.setMTime(Date.now());
+            console.log("start counting");
             this.props.completed(true);
         }
         else{
@@ -107,9 +117,9 @@ class Monitoring extends React.Component{
     }
 
     changeImg(){
-        let pattern_index = Math.round(Math.random() * 4);    
+        let pattern_index = Math.round(Math.random() * 3);    
         while(this.state.addImg == this.addimgs[pattern_index].file){
-            pattern_index = Math.round(Math.random() * 4);
+            pattern_index = Math.round(Math.random() * 3);
         }
         this.setState({addImg:this.addimgs[pattern_index].file});
     }

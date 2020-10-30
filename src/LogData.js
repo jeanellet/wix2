@@ -6,12 +6,12 @@ export const writeM = (level, trial, duration, onTime, image, choice, addScreen,
         Level: level,
         Action: "Monitoring",
         Trial: trial,
-        OnTime: onTime,
-        Duration: duration,
-        ImagePath: image,
-        WeaponChoice: choice,
-        Additional_Screening: addScreen,
-        Wrong_Selection: wrongAdd
+        "On Time": onTime,
+        "Duration (ms)": duration,
+        "Image Path": image,
+        "Weapon Choice": choice,
+        "Additional Screening": addScreen,
+        "Wrong Selection": wrongAdd
     }
     return entry;
 }
@@ -21,12 +21,12 @@ export const writeC = (level, trial, duration, image, choice, correct, currentCo
         Level: level,
         Action: "Counting",
         Trial: trial,
-        Duration: duration,
-        ImagePath: image,
-        BinChoice: choice,
-        CorrectBin: correct,
-        BinCount: currentCount,
-        BinCapacity: capacity
+        "Duration (ms)": duration,
+        "Image Path": image,
+        "Bin Choice": choice,
+        "Correct Bin": correct,
+        "Bin Count": currentCount,
+        "Bin Capacity": capacity
     }
     return entry;
 }

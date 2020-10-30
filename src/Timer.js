@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Timer = () => {
+function Timer(props) {
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(true);
 
@@ -11,7 +11,7 @@ const Timer = () => {
         setSeconds(seconds => seconds + 1);
       }, 1000);
     }
-    if (seconds == 15) {
+    if (seconds == 15 || props.mdone) {
       setIsActive(false);
     }
     return () => clearInterval(interval);

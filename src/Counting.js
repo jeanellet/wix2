@@ -13,18 +13,14 @@ function Counting(props){
         else{
             setFragile(fragile_count+1);
             props.completed(true);
+            console.log("stop counting");
             props.result({...props.result, choice:"Fragile", count: fragile_count+1, duration: Date.now() - props.time});
         }
     }
 
     function emptyFragile(){
-        if(!props.mDone){
-            alert("Please select number of weapons.");
-        }
-        else{
-            setFragile(0);
-            props.result({...props.result, count:0});
-        }
+        setFragile(0);
+        props.result({...props.result, count:0});
     }
 
     function addNormal() {
@@ -34,18 +30,14 @@ function Counting(props){
         else{
             setNormal(normal_count+1);
             props.completed(true);
+            console.log("stop counting");
             props.result({...props.result, choice:"Normal", count:normal_count+1, duration: Date.now() - props.time});
         }
     }
 
     function emptyNormal() {
-        if(!props.mDone){
-            alert("Please select number of weapons.");
-        }
-        else{
-            setNormal(0);
-            props.result({...props.result, count:0});
-        }
+        setNormal(0);
+        props.result({...props.result, count:0});
     }
 
     function addOversize() {
@@ -55,18 +47,14 @@ function Counting(props){
         else{
             setOversize(oversize_count+1);
             props.completed(true);
+            console.log("stop counting");
             props.result({...props.result, choice:"Oversize", count:oversize_count+1, duration: Date.now() - props.time});
         }
     }
 
     function emptyOversize() {
-        if(!props.mDone){
-            alert("Please select number of weapons.");
-        }
-        else{
-            setOversize(0);
-            props.result({...props.result, count:0});
-        }
+        setOversize(0);
+        props.result({...props.result, count:0});
     }
 
     return(

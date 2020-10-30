@@ -10,11 +10,14 @@ function Level(props) {
   
   const types = ["Fragile", "Normal", "Oversize"];
   const rand = Math.round(Math.random() * 2);
-  const trial_count = 10;
+  const trial_count = 20;
 
   const [monitoringDone, setMonitoring] = useState(false);
+  const [additionalDone, setAdditional] = useState(false);
   const [countingDone, setCounting] = useState(false);
-  const [imgs, setImgs] = useState([props.images[0].file, props.images[1].file]);
+  const [levelImgSet, setImgSet] = useState(props.images);
+  const [imgs, setImgs] = useState([]);
+  const [singleImg, setSingle] = useState("");
   
   const [key,setKey] = useState(0);
   const [rand_bag, setBag] = useState(types[rand]);
@@ -51,6 +54,7 @@ function Level(props) {
     
     if(monitoringDone && countingDone){
       setMonitoring(false);
+      setAdditional(false);
       setCounting(false);
       
       setKey(key+2);
@@ -64,27 +68,66 @@ function Level(props) {
 
   useEffect(()=>{
     setTime(Date.now());
-
+    console.log("trial #: ", props.trials);
     if(props.trials == trial_count){
       props.nextLevel(true);
 
     }
-    if(props.levelType == 3 || props.levelType == 92){
-      const path1 = props.images[2*props.order[props.trials]].path;
-      const path2 = props.images[2*props.order[props.trials]+1].path;
-      setImgs([props.images[2*props.order[props.trials]].file, props.images[2*props.order[props.trials]+1].file]);
-      if(path1.substring(3,path1.indexOf("_")) != path2.substring(3,path2.indexOf("_"))){
-        setImgs([props.images[2*props.order[props.trials]].file, props.images[2*props.order[props.trials]+1].file]);
+    else if(props.levelType == 3 || props.levelType == 92){
+      //get random image index
+      var randSpot = Math.round(Math.random() * (levelImgSet.length-1));
+      while(!levelImgSet[randSpot].isValid){
+        randSpot = Math.round(Math.random() * (levelImgSet.length-1));
+      };
+
+      //get corresponding file
+      const file1 = levelImgSet[randSpot].file; 
+      
+      //go through image list for matching pair
+      for(var i=0;i<levelImgSet.length;i++){
+        if(parseInt(levelImgSet[i].id) ==  parseInt(levelImgSet[randSpot].id) && i != randSpot){
+          //get file for match
+          const file2 = levelImgSet[i].file;
+
+          //remove pair from image set
+          let newSet = levelImgSet.slice();
+          newSet[randSpot].isValid = false;
+          newSet[i].isValid = false;
+          setImgSet(newSet);
+
+          console.log("selected:",file1, file2);
+          setImgs([file1, file2]);
+          break;
+        }
       }
+      
+    }
+    else if(props.levelType == 1 || props.levelType == 91){
+      let imgSet = levelImgSet;
+      console.log("imgSet:", imgSet);
+      var randSpot = Math.round(Math.random() * (levelImgSet.length-1));
+      while(!levelImgSet[randSpot].isValid){
+        randSpot = Math.round(Math.random() * (levelImgSet.length-1));
+      };
+      const file1 = imgSet[randSpot].file;
+
+      let newSet = levelImgSet.slice();
+      newSet[randSpot].isValid = false;
+      setImgSet(newSet);
+      setSingle(file1);
     }
   }, [props.trials]);
 
-  function blinkingImage(){
+  useEffect(()=>{
+    console.log("levelImgSet: ", levelImgSet);
+  }, [levelImgSet]);
+
+  function blinkingImage(){   
     if (props.levelType == 1 || props.levelType == 91){
-        return (<img className="image_style"
-          src={props.images[props.trials].file}
-          alt="single image"
-        />)
+      return (<img className="image_style"
+        src={singleImg}
+        alt="single image"
+      />)
     }
     else{
         return(<ShowImage key={key+1} images={imgs}></ShowImage>)
@@ -92,7 +135,9 @@ function Level(props) {
   }
 
   function getWeaponCount(){
-    return props.images[props.trials].weapons;
+    if(props.trials < trial_count){
+      return props.images[props.trials].weapons;
+    }
   }
 
   function isHighlight(){
@@ -105,7 +150,7 @@ function Level(props) {
   return (
     <div className="task_style">
       <div className="img_side">
-      <Timer key={props.trials}></Timer>
+      <Timer key={props.trials} mdone={monitoringDone}></Timer>
       {blinkingImage()}
     
     <h2 className="bag_style">{rand_bag}</h2>
@@ -121,6 +166,8 @@ function Level(props) {
       setMTime={setMTime}
       trials={props.trials}
       correctAdd={props.startData.pattern}
+      addDone={additionalDone}
+      setAdd={setAdditional}
     />
     <Counting 
       key={"L"+props.levelType} 

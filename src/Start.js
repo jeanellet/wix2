@@ -10,7 +10,7 @@ function Start(props){
     const addImgs = require.context('./Additional_Screening', true, /\.jpg$/);
     const addimgs = addImgs.keys().map(path=>{return {path, file: addImgs(path)}});
   
-    let pattern_index = Math.round(Math.random() * 4);
+    let pattern_index = Math.round(Math.random() * 3);
     let chosen_add = addimgs[pattern_index].file;
     let capacities = [0,0,0];
     for(var i=0;i<capacities.length;i++){
@@ -26,7 +26,18 @@ function Start(props){
 
     const [dummy, setDummy] = useState(temp);
 
+    function askId(){
+        var name = prompt('Enter user ID here:','');
+        if (name != null && name != "") {
+            return name;
+        }
+    }
+
     function click(){
+        if(order==1 && props.levelIndex == 0){
+            var user_id = askId();
+            props.setUser(user_id);
+        }
         setOrder(order+1);
         if(order >= 3){
             props.setStart({...dummy});
@@ -42,7 +53,7 @@ function Start(props){
                 </div>
                 <div>
                     <h1>You will participate in a task where you will determine if a baggage is safe by viewing an x-ray image of said baggage.</h1>
-                    <button onClick={click}><h2>Continue</h2></button>
+                    <button onClick={click}><h2>Enter User ID</h2></button>
                 </div>
             </div>
         )
