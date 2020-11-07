@@ -18,6 +18,7 @@ function Level(props) {
   const [levelImgSet, setImgSet] = useState(props.images);
   const [imgs, setImgs] = useState([]);
   const [singleImg, setSingle] = useState("");
+  const [weaponCount, setWeaponCount] = useState(0);
   
   const [key,setKey] = useState(0);
   const [rand_bag, setBag] = useState(types[rand]);
@@ -97,6 +98,7 @@ function Level(props) {
 
           console.log("selected:",file1, file2);
           setImgs([file1, file2]);
+          setWeaponCount(levelImgSet[i].weapons);
           break;
         }
       }
@@ -114,7 +116,9 @@ function Level(props) {
       let newSet = levelImgSet.slice();
       newSet[randSpot].isValid = false;
       setImgSet(newSet);
+      console.log("selected:",file1);
       setSingle(file1);
+      setWeaponCount(levelImgSet[randSpot].weapons);
     }
   }, [props.trials]);
 
@@ -131,12 +135,6 @@ function Level(props) {
     }
     else{
         return(<ShowImage key={key+1} images={imgs}></ShowImage>)
-    }
-  }
-
-  function getWeaponCount(){
-    if(props.trials < trial_count){
-      return props.images[props.trials].weapons;
     }
   }
 
@@ -158,7 +156,7 @@ function Level(props) {
     </div>
     <Monitoring 
       key={props.trials} 
-      weaponCount = {getWeaponCount()} 
+      weaponCount = {weaponCount} 
       highlightOk={isHighlight()} 
       completed={setMonitoring} 
       result={setMResult}

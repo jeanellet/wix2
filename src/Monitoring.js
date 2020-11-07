@@ -77,6 +77,13 @@ class Monitoring extends React.Component{
         if(!this.props.addDone && this.props.trials%4 == 0){
             this.changeImg();
             this.setState({isAddScreen:true});
+
+            /*
+            this.props.result({count:number, duration: duration, wrong: -1});
+            console.log("start counting");
+            this.props.setMTime(Date.now());
+            this.props.completed(true);
+            */
         }
         else{
             this.props.result({count:number, duration: duration, wrong: -1});
@@ -89,6 +96,7 @@ class Monitoring extends React.Component{
     }
 
     isClicked(count, btn){
+        console.log("weaponCount", this.props.weaponCount);
         if (this.props.weaponCount == count && !this.state.select && this.props.highlightOk){
             return "highlightRed";
         }

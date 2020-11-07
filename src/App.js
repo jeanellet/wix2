@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { CSVLink, CSVDownload } from 'react-csv';
 import './App.css';
 import Level from './Level';
@@ -66,6 +66,7 @@ function App() {
   const [trials, setTrials] = useState(0);
   const [transitionDone, setTransition] = useState(false);
   const [user_id, setId] = useState("user");
+  const secondFile = useRef(null);
   const order = [1, 3, 91, 92];
   const images = [LOA1, LOA3, LOA91, LOA92];
   console.log("images", images);
@@ -83,6 +84,10 @@ function App() {
   useEffect(()=>{
     getDisplay();
   }, [transitionDone]);
+
+  function myClick(){
+    secondFile.current.link.click();
+  }
 
   function getDisplay(){
     if(levelIndex <= 3){
@@ -109,12 +114,18 @@ function App() {
       let allData = mData.concat(cData);
       return (
         <div className="survey-style">
-                <h1>You are now done with the experiment. Please download your data and send to the proctor. Thank you for your time.</h1>
+                <h1>You are now done with the experiment. Please download your data (2 files) and send to the proctor. Thank you for your time.</h1>
                 <button>
-                  <CSVLink filename={user_id+".csv"} data={allData}>
+                  <CSVLink filename={user_id+"_Monitoring.csv"} data={mData} onClick={event=>{
+                    myClick();
+                  }}>
                     <h1>Download My Data</h1>
                   </CSVLink>
                 </button>
+                <div>
+                  <CSVLink ref={secondFile} filename={user_id+"_Counting.csv"} data={cData}></CSVLink>
+                </div>
+                
         </div>
         
       );
