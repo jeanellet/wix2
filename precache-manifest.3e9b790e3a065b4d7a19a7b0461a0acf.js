@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b283a0e65038d0f73ec9b2f37e2f97fc",
+    "revision": "ae5ef5f01a7a170a8902fac1102baba7",
     "url": "/wix2/index.html"
   },
   {
-    "revision": "99587fed9245ae8391bf",
+    "revision": "5177c624df1229e33862",
     "url": "/wix2/static/css/2.f1b50ea8.chunk.css"
   },
   {
-    "revision": "7a74c8a06a558aeea643",
-    "url": "/wix2/static/css/main.81c6577e.chunk.css"
+    "revision": "9316e0d26926bbbe9481",
+    "url": "/wix2/static/css/main.3e4724ed.chunk.css"
   },
   {
-    "revision": "99587fed9245ae8391bf",
-    "url": "/wix2/static/js/2.8f8877de.chunk.js"
+    "revision": "5177c624df1229e33862",
+    "url": "/wix2/static/js/2.7a296e08.chunk.js"
   },
   {
     "revision": "e88a3e95b5364d46e95b35ae8c0dc27d",
-    "url": "/wix2/static/js/2.8f8877de.chunk.js.LICENSE.txt"
+    "url": "/wix2/static/js/2.7a296e08.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7a74c8a06a558aeea643",
-    "url": "/wix2/static/js/main.87998aff.chunk.js"
+    "revision": "9316e0d26926bbbe9481",
+    "url": "/wix2/static/js/main.48757210.chunk.js"
   },
   {
     "revision": "2a6c149a931e23c4f13e",
