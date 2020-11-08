@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d33429c2fb9d1b3e5f84f125be662bcc",
+    "revision": "b283a0e65038d0f73ec9b2f37e2f97fc",
     "url": "/wix2/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/wix2/static/css/2.f1b50ea8.chunk.css"
   },
   {
-    "revision": "b63b64c99ca14c361a4e",
+    "revision": "7a74c8a06a558aeea643",
     "url": "/wix2/static/css/main.81c6577e.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/wix2/static/js/2.8f8877de.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b63b64c99ca14c361a4e",
-    "url": "/wix2/static/js/main.cc12f18b.chunk.js"
+    "revision": "7a74c8a06a558aeea643",
+    "url": "/wix2/static/js/main.87998aff.chunk.js"
   },
   {
     "revision": "2a6c149a931e23c4f13e",
@@ -477,7 +477,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   },
   {
     "revision": "a3935acbbc7579780530cde121c0edc1",
-    "url": "/wix2/static/media/B69_23_0.a3935acb.png"
+    "url": "/wix2/static/media/B69_23_1.a3935acb.png"
   },
   {
     "revision": "7080c4a1b8e0ec1d368652a43e7b657d",
