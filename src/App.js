@@ -114,18 +114,12 @@ function App() {
       let allData = mData.concat(cData);
       return (
         <div className="survey-style">
-                <h1>You are now done with the experiment. Please download your data (2 files) and send to the proctor. Thank you for your time.</h1>
-                <button>
-                  <CSVLink filename={user_id+"_Monitoring.csv"} data={mData} onClick={event=>{
-                    myClick();
-                  }}>
-                    <h1>Download My Data</h1>
-                  </CSVLink>
-                </button>
-                <div>
-                  <CSVLink ref={secondFile} filename={user_id+"_Counting.csv"} data={cData}></CSVLink>
-                </div>
-                
+          <h1>You are now done with the experiment. Please download your data and send to the proctor. Thank you for your time.</h1>
+          <button>
+            <CSVLink filename={user_id+".csv"} data={allData} >
+              <h1>Download My Data</h1>
+            </CSVLink>
+          </button>
         </div>
         
       );
@@ -133,7 +127,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div class="app">
       {getDisplay()}
     </div>
 

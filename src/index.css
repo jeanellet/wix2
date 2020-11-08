@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  margin: auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -19,8 +19,9 @@ code {
   width: 50%;
 }
 .image_style {
-  width: 80%;
-  margin: 50px;
+  text-align:center;
+  height:70vh;
+  margin: 0 30px;
 }
 .image_style img {
   text-align: center;
@@ -47,13 +48,17 @@ code {
   align-items: center;
 }
 
-.monitoring_style button {
+.monitoring_style div{
+  width: 100%;
+}
+
+.monitoring_style div button {
   width: 150px;
   height: 50px;
   margin: 10px;
 }
 
-.monitoring_style button h2 {
+.monitoring_style div button h2 {
   align-self: center;
   margin: auto;
 }
