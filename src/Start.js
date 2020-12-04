@@ -61,7 +61,7 @@ function Start(props){
 
     function second(){
         return(
-            <div className="transition-style">
+            <div className="transition-style addimg-transition">
                 <div>
                     <img src={dummy.pattern}/>
                 </div>

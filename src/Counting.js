@@ -8,7 +8,7 @@ function Counting(props){
 
     function addFragile() {
         if(!props.mDone){
-            alert("Please select number of weapons.");
+            alert("Please select number of objects.");
         }
         else{
             setFragile(fragile_count+1);
@@ -65,17 +65,22 @@ function Counting(props){
                 <button onClick={addFragile}><h2>Add</h2></button>
                 <button onClick={emptyFragile}><h2>New Bin</h2></button>
             </div>
+            
             <h1>Normal</h1>
             <h1>{normal_count}</h1>
-            <button onClick={addNormal}><h2>Add</h2></button>
-            <button onClick={emptyNormal}><h2>New Bin</h2></button>
+            <div className="count_btns">
+                <button onClick={addNormal}><h2>Add</h2></button>
+                <button onClick={emptyNormal}><h2>New Bin</h2></button>
+            </div>
             <h1>Oversize</h1>
             <h1>{oversize_count}</h1>
-            <button onClick={addOversize}><h2>Add</h2></button>
-            <button onClick={emptyOversize}><h2>New Bin</h2></button>
+            <div className="count_btns">
+                <button onClick={addOversize}><h2>Add</h2></button>
+                <button onClick={emptyOversize}><h2>New Bin</h2></button>
+            </div>
         </div>
-    )
-};
+        )
+    };
 
 
 export default Counting;

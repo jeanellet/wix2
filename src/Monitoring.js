@@ -25,6 +25,10 @@ class Monitoring extends React.Component{
     }
     
     clicked(number){
+        if(!this.props.timerOk){
+            alert("Please sort bag into a bin.");
+            return;
+        }
         this.setState({select:true});
         const duration = Date.now() - this.props.time;
         console.log("stop monitoring");
@@ -75,10 +79,11 @@ class Monitoring extends React.Component{
 
         //additional screening
         if(!this.props.addDone && this.props.trials%4 == 0){
-            
+            /*
             this.changeImg();
             this.setState({isAddScreen:true});
-            
+            this.props.setAddStart(true);
+            */
             
             this.props.result({count:number, duration: duration, wrong: -1});
             console.log("start counting");
@@ -132,12 +137,12 @@ class Monitoring extends React.Component{
         
         return(
             <div className="monitoring_style">
-                <h2>Select number of weapons:</h2>
-                <div><button className={this.isClicked(0, this.state.button0)} onClick={() => this.clicked(0)}><h2>0</h2></button></div>
-                <div><button className={this.isClicked(1, this.state.button1)} onClick={() => this.clicked(1)}><h2>1</h2></button></div>
-                <div><button className={this.isClicked(2, this.state.button2)} onClick={() => this.clicked(2)}><h2>2</h2></button></div>
-                <div><button className={this.isClicked(3, this.state.button3)} onClick={() => this.clicked(3)}><h2>3</h2></button></div>
-                <div><button className={this.isClicked(4, this.state.button4)} onClick={() => this.clicked(4)}><h2>4</h2></button></div>
+                <h2>Select number of objects:</h2>
+                <button className={this.isClicked(0, this.state.button0)} onClick={() => this.clicked(0)}><h2>0</h2></button>
+                <button className={this.isClicked(1, this.state.button1)} onClick={() => this.clicked(1)}><h2>1</h2></button>
+                <button className={this.isClicked(2, this.state.button2)} onClick={() => this.clicked(2)}><h2>2</h2></button>
+                <button className={this.isClicked(3, this.state.button3)} onClick={() => this.clicked(3)}><h2>3</h2></button>
+                <button className={this.isClicked(4, this.state.button4)} onClick={() => this.clicked(4)}><h2>4</h2></button>
                 <Popup open={this.state.isAddScreen} closeOnDocumentClick={false} modal>
                     <div className="modal add-popup">
                         <h2>Please do additional screening on this baggage.</h2>

@@ -38,7 +38,7 @@ class ShowImage extends React.Component {
   render() {
     return (
       <div className="image_style">
-        <img className="image_style"
+        <img
           src={this.props.images[this.state.currentImage]}
           alt="baggage images"
         />

@@ -13,8 +13,10 @@ function Level(props) {
   const trial_count = 20;
 
   const [monitoringDone, setMonitoring] = useState(false);
+  const [additionalStart, setAddStart] = useState(false);
   const [additionalDone, setAdditional] = useState(false);
   const [countingDone, setCounting] = useState(false);
+  const [timerOk, setTimerOk] = useState(true);
   const [levelImgSet, setImgSet] = useState(props.images);
   const [imgs, setImgs] = useState([]);
   const [singleImg, setSingle] = useState("");
@@ -29,6 +31,9 @@ function Level(props) {
   const [time, setTime] = useState(Date.now());
   const [mTime, setMTime] = useState(Date.now());
 
+  useEffect(()=>{
+    console.log("timer stat changed", timerOk);
+  }, [timerOk]);
 
   function getRandomBag(){
     const types = ["Fragile", "Normal", "Oversize"];
@@ -56,7 +61,9 @@ function Level(props) {
     if(monitoringDone && countingDone){
       setMonitoring(false);
       setAdditional(false);
+      setAddStart(false);
       setCounting(false);
+      setTimerOk(true);
       
       setKey(key+2);
       props.setTrials(props.trials+1);
@@ -128,10 +135,7 @@ function Level(props) {
 
   function blinkingImage(){   
     if (props.levelType == 1 || props.levelType == 91){
-      return (<img className="image_style"
-        src={singleImg}
-        alt="single image"
-      />)
+      return (<ShowImage key={key+1} images={[singleImg,singleImg]}></ShowImage>)
     }
     else{
         return(<ShowImage key={key+1} images={imgs}></ShowImage>)
@@ -148,7 +152,7 @@ function Level(props) {
   return (
     <div className="task_style">
       <div className="img_side">
-      <Timer key={props.trials} mdone={monitoringDone}></Timer>
+      <Timer key={props.trials} addStart={additionalStart} setTimerOk={setTimerOk} setmdone={setMonitoring} mdone={monitoringDone}></Timer>
       {blinkingImage()}
     
     <h2 className="bag_style">{rand_bag}</h2>
@@ -166,7 +170,10 @@ function Level(props) {
       correctAdd={props.startData.pattern}
       addDone={additionalDone}
       setAdd={setAdditional}
+      setAddStart={setAddStart}
+      timerOk={timerOk}
     />
+    <div className="divider"></div>
     <Counting 
       key={"L"+props.levelType} 
       mDone={monitoringDone}
