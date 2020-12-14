@@ -25,7 +25,7 @@ function Counting(props){
 
     function addNormal() {
         if(!props.mDone){
-            alert("Please select number of weapons.");
+            alert("Please select number of objects.");
         }
         else{
             setNormal(normal_count+1);
@@ -42,7 +42,7 @@ function Counting(props){
 
     function addOversize() {
         if(!props.mDone){
-            alert("Please select number of weapons.");
+            alert("Please select number of objects.");
         }
         else{
             setOversize(oversize_count+1);

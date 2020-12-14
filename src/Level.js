@@ -45,20 +45,18 @@ function Level(props) {
     return types[rand];
   }
 
-  useEffect(()=>{
-    if(countingDone){
-      const myIndex = cResult.choice;
-      let counting_entry = writeC(props.levelType, props.trials+1, cResult.duration, props.images[props.trials].file, cResult.choice, rand_bag, cResult.count, props.startData[myIndex]);
-      props.setCData([...props.cdata, counting_entry]);
-    }
-    else if(monitoringDone){
+  useEffect(()=>{    
+    if(monitoringDone && countingDone){
+
       const hadAdd = mResult.wrong == -1 ? "False":"True";
       const count = mResult.wrong >=0 ? mResult.wrong:"";
       let monitoring_entry = writeM(props.levelType, props.trials+1, mResult.duration, mResult.duration < 15000, props.images[props.trials].file, mResult.count, hadAdd, count);
       props.setMData([...props.mdata, monitoring_entry]);
-    }
-    
-    if(monitoringDone && countingDone){
+
+      const myIndex = cResult.choice;
+      let counting_entry = writeC(props.levelType, props.trials+1, cResult.duration, props.images[props.trials].file, cResult.choice, rand_bag, cResult.count, props.startData[myIndex]);
+      props.setCData([...props.cdata, counting_entry]);
+
       setMonitoring(false);
       setAdditional(false);
       setAddStart(false);
@@ -152,7 +150,7 @@ function Level(props) {
   return (
     <div className="task_style">
       <div className="img_side">
-      <Timer key={props.trials} addStart={additionalStart} setTimerOk={setTimerOk} setmdone={setMonitoring} mdone={monitoringDone}></Timer>
+      <Timer key={props.trials} addDone={additionalDone} addStart={additionalStart} setTimerOk={setTimerOk} setmdone={setMonitoring} mdone={monitoringDone}></Timer>
       {blinkingImage()}
     
     <h2 className="bag_style">{rand_bag}</h2>

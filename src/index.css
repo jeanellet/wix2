@@ -192,6 +192,9 @@ body {
   align-items: center;
   width:20vw;
   margin: auto;
+}
+
+.add-popup div h2 {
   font-size:2vh;
 }
 

@@ -92,7 +92,7 @@ function Start(props){
     function survey(){
         return(
             <div className="survey-style">
-                <h1>You will begin a short survey regarding the task you just completed before going onto the next task. The proctor will give you instructions on completing the survey.</h1>
+                <h1>STOP! You will complete a short survey in Qualtrics.</h1>
                 <button onClick={click}><h2>I have completed the survey.</h2></button>
             </div>
         )
