@@ -111,6 +111,19 @@ function App() {
       
     }
     else{
+      // allow data to be downloaded
+
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json'},
+        body: JSON.stringify({title: 'Post request'})
+      };
+
+      fetch('https://wix-server.herokuapp.com/', requestOptions)
+        .then(response => response.json())
+        .then(data => console.log(data.id));
+
+      /*
       let allData = mData.concat(cData);
       return (
         <div className="survey-style">
@@ -123,6 +136,7 @@ function App() {
         </div>
         
       );
+      */
     }
   }
 
