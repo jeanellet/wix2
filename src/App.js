@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { CSVLink, CSVDownload } from 'react-csv';
+import axios from 'axios';
 import './App.css';
 import Level from './Level';
 import Start from './Start';
@@ -66,10 +67,10 @@ function App() {
   const [trials, setTrials] = useState(0);
   const [transitionDone, setTransition] = useState(false);
   const [user_id, setId] = useState("user");
+  const [isCalled, setCall] = useState(false);
   const secondFile = useRef(null);
   const order = [1, 3, 91, 92];
   const images = [LOA1, LOA3, LOA91, LOA92];
-  console.log("images", images);
 
 
   useEffect(()=>{
@@ -82,11 +83,24 @@ function App() {
   }, [nextLevel]);
 
   useEffect(()=>{
-    getDisplay();
+    if(transitionDone){
+      getDisplay();
+    }
   }, [transitionDone]);
 
-  function myClick(){
-    secondFile.current.link.click();
+  useEffect(()=>{
+    sendData({data: mData.concat(cData)});
+  }, [isCalled]);
+
+  async function sendData(data){
+    console.log(data);
+    await axios.post(`https://wix-server.herokuapp.com/`, 
+      data
+    )
+    .then(res => {
+      console.log(res);
+      console.log(res.data);
+    });
   }
 
   function getDisplay(){
@@ -112,31 +126,19 @@ function App() {
     }
     else{
       // allow data to be downloaded
+      if (isCalled){
+        return;
+      }
 
-      const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify({title: 'Post request'})
-      };
+      setCall(true);
 
-      fetch('https://wix-server.herokuapp.com/', requestOptions)
-        .then(response => response.json())
-        .then(data => console.log(data.id));
-
-      /*
-      let allData = mData.concat(cData);
       return (
         <div className="survey-style">
-          <h1>You are now done with the experiment. Please download your data and send to the proctor. Thank you for your time.</h1>
-          <button>
-            <CSVLink filename={user_id+".csv"} data={allData} >
-              <h1>Download My Data</h1>
-            </CSVLink>
-          </button>
+          <h1>You are now done with the experiment. Thank you for your time.</h1>
         </div>
         
       );
-      */
+      
     }
   }
 
