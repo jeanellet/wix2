@@ -4,6 +4,7 @@ import axios from 'axios';
 import './App.css';
 import Level from './Level';
 import Start from './Start';
+import { Router, Route, Switch } from "react-router";
 
 function App() {
 
@@ -143,9 +144,15 @@ function App() {
   }
 
   return (
-    <div class="app">
-      {getDisplay()}
+    <div>
+      <Router>
+        <Switch>
+          <Route path="/data" exact component={DataDisplay} />
+          <Route path="/" exact component={getDisplay()} />
+        </Switch>
+      </Router>
     </div>
+    
 
   );
 }
