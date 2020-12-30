@@ -4,7 +4,8 @@ import axios from 'axios';
 import './App.css';
 import Level from './Level';
 import Start from './Start';
-import { Router, Route, Switch } from "react-router";
+import DataDisplay from './DataDisplay';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
 
@@ -147,8 +148,8 @@ function App() {
     <div>
       <Router>
         <Switch>
+          <Route path="/wix2" exact render={() => getDisplay()} />
           <Route path="/data" exact component={DataDisplay} />
-          <Route path="/" exact component={getDisplay()} />
         </Switch>
       </Router>
     </div>
