@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/wix2/precache-manifest.d3c8b97e8f718a5117ddce51a7cfb9c7.js"
+  "/wix2/precache-manifest.8ac3d1a8f14fc0230e54218fda75a6da.js"
 );
 
 self.addEventListener('message', (event) => {
