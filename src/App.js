@@ -74,7 +74,7 @@ function App() {
   const order = [1, 3, 91, 92];
   const images = [LOA1, LOA3, LOA91, LOA92];
 
-
+  // reset parameters for next level
   useEffect(()=>{
     if(nextLevel == true){
         setLevel(levelIndex + 1);
@@ -84,20 +84,25 @@ function App() {
     }
   }, [nextLevel]);
 
+  // update the display when the transition screens are done
   useEffect(()=>{
     if(transitionDone){
       getDisplay();
     }
   }, [transitionDone]);
 
+  // send the data when the experiment is done
   useEffect(()=>{
-    sendData({data: mData.concat(cData)});
+    sendData(mData.concat(cData));
   }, [isCalled]);
 
+  //takes data from experiment and makes POST request to heroku
   async function sendData(data){
-    console.log(data);
+    console.log("calling sendData");
+    let myobj = {user_id:user_id, rows: data};
+    console.log(myobj);
     await axios.post(`https://wix-server.herokuapp.com/`, 
-      data
+      myobj
     )
     .then(res => {
       console.log(res);
@@ -105,6 +110,7 @@ function App() {
     });
   }
 
+  //change display based on level completion
   function getDisplay(){
     if(levelIndex <= 3){
       if(transitionDone){
@@ -127,20 +133,25 @@ function App() {
       
     }
     else{
-      // allow data to be downloaded
+      // allow data to be sent only once
       if (isCalled){
-        return;
+        return (
+          <div className="survey-style">
+            <h1>You are now done with the experiment. Thank you for your time.</h1>
+          </div>
+          
+        );
       }
+      else{
+        setCall(true);
 
-      setCall(true);
-
-      return (
-        <div className="survey-style">
-          <h1>You are now done with the experiment. Thank you for your time.</h1>
-        </div>
-        
-      );
-      
+        return (
+          <div className="survey-style">
+            <h1>You are now done with the experiment. Thank you for your time.</h1>
+          </div>
+          
+        );
+      }
     }
   }
 

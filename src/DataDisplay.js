@@ -25,7 +25,7 @@ function DataDisplay(props){
 
     return (
         <div>
-            {mydata && mydata.map(user => <CsvDownload data={user.rows}/>)}
+            {mydata && mydata.map(user => <CsvDownload filename={`${user.user_id}.csv`} data={user.rows}>{user.user_id}</CsvDownload>)}
         </div>
     );
 };
