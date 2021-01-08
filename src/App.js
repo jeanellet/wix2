@@ -5,6 +5,7 @@ import './App.css';
 import Level from './Level';
 import Start from './Start';
 import DataDisplay from './DataDisplay';
+import ErrorPage from './ErrorPage';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 function App() {
@@ -70,7 +71,7 @@ function App() {
   const [transitionDone, setTransition] = useState(false);
   const [user_id, setId] = useState("user");
   const [isCalled, setCall] = useState(false);
-  const secondFile = useRef(null);
+  const [serverStat, setServerStat] = useState("OK");
   const order = [1, 3, 91, 92];
   const images = [LOA1, LOA3, LOA91, LOA92];
 
@@ -91,6 +92,12 @@ function App() {
     }
   }, [transitionDone]);
 
+  useEffect(()=>{
+    console.log("updating display");
+    console.log(serverStat);
+    getDisplay();
+  }, [serverStat]);
+
   // send the data when the experiment is done
   useEffect(()=>{
     sendData(mData.concat(cData));
@@ -101,18 +108,27 @@ function App() {
     console.log("calling sendData");
     let myobj = {user_id:user_id, rows: data};
     console.log(myobj);
-    await axios.post(`https://wix-server.herokuapp.com/`, 
-      myobj
-    )
-    .then(res => {
-      console.log(res);
-      console.log(res.data);
-    });
+    try{
+      await axios.post(`https://wix-server.herokuapp.com/`, 
+        myobj
+      )
+      .then(res => {
+        console.log(res);
+        console.log(res.data);
+      });
+    }
+    catch(error){
+      setServerStat("ERROR");
+    }
+    
   }
 
   //change display based on level completion
   function getDisplay(){
-    if(levelIndex <= 3){
+    if(serverStat == "ERROR"){
+      return <ErrorPage></ErrorPage>
+    }
+    else if(levelIndex <= 3){
       if(transitionDone){
         return <Level 
           mdata={mData}
