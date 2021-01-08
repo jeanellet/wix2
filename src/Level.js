@@ -10,7 +10,7 @@ function Level(props) {
   
   const types = ["Fragile", "Normal", "Oversize"];
   const rand = Math.round(Math.random() * 2);
-  const trial_count = 1;
+  const trial_count = 20;
 
   const [monitoringDone, setMonitoring] = useState(false);
   const [additionalStart, setAddStart] = useState(false);
