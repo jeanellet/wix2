@@ -6,7 +6,8 @@ class ShowImage extends React.Component {
     this.switchImage = this.switchImage.bind(this);
     this.state = {
       currentImage: 0,
-      seconds: 0
+      seconds: 0,
+      imageStatus: "<img src={this.props.images[this.state.currentImage]}/>"
     };
   }
 
@@ -35,13 +36,19 @@ class ShowImage extends React.Component {
     clearInterval(this.timer);
   }
 
+  handleImageLoaded() {
+    this.setState({ imageStatus: "" });
+  }
+
   render() {
     return (
       <div className="image_style">
         <img
           src={this.props.images[this.state.currentImage]}
           alt="baggage images"
+          onLoad={this.handleImageLoaded.bind(this)}
         />
+        {this.state.imageStatus}
       </div>
     );
   }

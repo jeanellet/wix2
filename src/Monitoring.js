@@ -78,8 +78,7 @@ class Monitoring extends React.Component{
         }
 
         //additional screening
-        if(!this.props.addDone && this.props.trials%4 == 0){
-            
+        if(!this.props.addDone && this.props.addCount.indexOf(this.props.trials) > -1){
             
             this.changeImg();
             this.setState({isAddScreen:true});

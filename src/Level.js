@@ -21,6 +21,7 @@ function Level(props) {
   const [imgs, setImgs] = useState([]);
   const [singleImg, setSingle] = useState("");
   const [weaponCount, setWeaponCount] = useState(0);
+  const [addCount, setAddCount] = useState([]);
   
   const [key,setKey] = useState(0);
   const [rand_bag, setBag] = useState(types[rand]);
@@ -45,6 +46,7 @@ function Level(props) {
     return types[rand];
   }
 
+  //when trials are finished
   useEffect(()=>{    
     if(monitoringDone && countingDone){
 
@@ -72,9 +74,22 @@ function Level(props) {
     
   }, [monitoringDone, countingDone]);
 
+  //when levels are finished
   useEffect(()=>{
     setTime(Date.now());
     console.log("trial #: ", props.trials);
+    if(props.trials == 0){
+      let myarr = [];
+      for(var i=0;i<5;i++){
+        let myval = Math.round(Math.random() * trial_count);
+        while(myarr.indexOf(myval) > -1){
+          myval = Math.round(Math.random() * trial_count);
+        }
+        myarr.push(myval);
+      }
+      console.log("got new nums for this level", myarr, props.levelType);
+      setAddCount(myarr);
+    }
     if(props.trials == trial_count){
       props.nextLevel(true);
 
@@ -170,6 +185,7 @@ function Level(props) {
       setAdd={setAdditional}
       setAddStart={setAddStart}
       timerOk={timerOk}
+      addCount={addCount}
     />
     <div className="divider"></div>
     <Counting 
