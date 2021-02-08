@@ -96,6 +96,10 @@ body {
   text-align: center;
 }
 
+.count_div{
+  height:25vh;
+}
+
 .counting_style h1 {
   text-align: center;
   margin: auto;

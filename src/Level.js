@@ -50,9 +50,7 @@ function Level(props) {
   useEffect(()=>{    
     if(monitoringDone && countingDone){
 
-      const hadAdd = mResult.wrong == -1 ? "False":"True";
-      const count = mResult.wrong >=0 ? mResult.wrong:"";
-      let monitoring_entry = writeM(props.levelType, props.trials+1, mResult.duration, mResult.duration < 15000, props.images[props.trials].file, mResult.count, hadAdd, count);
+      let monitoring_entry = writeM(props.levelType, props.trials+1, mResult.duration, mResult.duration < 15000, props.images[props.trials].file, mResult.count, mResult.wrong);
       props.setMData([...props.mdata, monitoring_entry]);
 
       const myIndex = cResult.choice;

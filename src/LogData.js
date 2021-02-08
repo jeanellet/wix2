@@ -1,7 +1,7 @@
 import React from 'react';
 
 // signature for writing monitoring tasks
-export const writeM = (level, trial, duration, onTime, image, choice, addScreen, wrongAdd)=>{
+export const writeM = (level, trial, duration, onTime, image, choice, wrongAdd)=>{
     var entry = {
         Level: level,
         Action: "Monitoring",
@@ -10,7 +10,6 @@ export const writeM = (level, trial, duration, onTime, image, choice, addScreen,
         "Duration (ms)": duration,
         "Image Path": image,
         "Weapon Choice": choice,
-        "Additional Screening": addScreen,
         "Wrong Selection": wrongAdd
     }
     return entry;

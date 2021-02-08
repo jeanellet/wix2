@@ -18,7 +18,6 @@ class Monitoring extends React.Component{
             button4: false,
             isAddScreen: false,
             addImg: "",
-            wrong_count:0,
             count: -1,
             duration:-1
         }
@@ -94,7 +93,7 @@ class Monitoring extends React.Component{
             */
         }
         else{
-            this.props.result({count:number, duration: duration, wrong: -1});
+            this.props.result({count:number, duration: duration, wrong: "No Screening"});
             console.log("start counting");
             this.props.setMTime(Date.now());
             this.props.completed(true);
@@ -114,14 +113,18 @@ class Monitoring extends React.Component{
         if(this.props.correctAdd == this.state.addImg){
             this.setState({isAddScreen:false});
             this.props.setAdd(true);
-            this.props.result({count:this.state.count, duration:this.state.duration, wrong: this.state.wrong_count});
+            this.props.result({count:this.state.count, duration:this.state.duration, wrong: "Correct Selection"});
             this.props.setMTime(Date.now());
             console.log("start counting");
             this.props.completed(true);
         }
         else{
-            alert("Try again");
-            this.setState({wrong_count:this.state.wrong_count+1});
+            this.setState({isAddScreen:false});
+            this.props.setAdd(true);
+            this.props.result({count:this.state.count, duration:this.state.duration, wrong: "Incorrect Selection"});
+            this.props.setMTime(Date.now());
+            console.log("start counting");
+            this.props.completed(true);
         }
         
     }
